@@ -267,7 +267,7 @@
           "NSLocationAlwaysUsageDescription": [],
           "IonAppId": [
             {
-              "xml": "<string>com.ivivu.oliviaapp2019</string>",
+              "xml": "<string>e19952cb</string>",
               "count": 1
             }
           ],
@@ -464,7 +464,7 @@
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
     "cordova-plugin-ionic": {
-      "APP_ID": "com.ivivu.oliviaapp2019",
+      "APP_ID": "e19952cb",
       "CHANNEL_NAME": "Production",
       "UPDATE_API": "https://api.ionicjs.com",
       "UPDATE_METHOD": "auto",
