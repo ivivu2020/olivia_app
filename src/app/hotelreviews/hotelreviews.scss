@@ -1,0 +1,54 @@
+.text-title{
+  font-size: 20px;
+  font-weight: bold;
+}
+   .hotel-review-page{
+      
+      .innerreview{
+          height: 100%;
+          margin-left: 11px;
+          div{
+            display:table-cell;
+          }
+        }
+        .img1 {
+          object-fit: cover !important;
+          width: 100px;
+          height: 100px;
+          margin-left: 5px;
+          max-width: initial;
+      }
+      .text-review{
+        font-size: 14px;
+        letter-spacing: -0.4px;
+      }
+      .review-point{
+        color:#26bed6;
+        font-size: 18px; 
+        font-weight: bold;
+        letter-spacing: -0.51px;
+      }
+      .text-customer-name{
+        color: #828282;
+        font-size: 12px;    
+        letter-spacing: -0.34px;
+      }
+      .text-bestfeature{
+        margin:0;
+        font-weight: 300;
+        font-size: 14px;
+        letter-spacing: -0.4px;
+      }
+      .row-padding{
+      margin: 0px 16px;padding: 0;
+      }
+      .p-top-19{
+      padding-top:19px;
+      }
+      .p-top-5{
+      padding-top:5px;
+      }
+      .p-top-10{
+      padding-top:10px;
+      }
+   } 

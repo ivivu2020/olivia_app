@@ -1,0 +1,294 @@
+<!-- <ion-header class="experiencesearch-header"></ion-header> -->
+ 
+<!-- </ion-header> -->
+<div class="float-search-white-bar float-disable">
+   <div class="float-search-top float-disable">
+    <ion-row>
+      <div class="no-padding col-item col-float-left">
+        <div class="f-center cls-border" (click)="goback()">
+          <img class="img-vector-left" src="../../assets/imgs/vector_left.svg">
+        </div>
+
+        <div class="item-float-search p-top-6"  (click)="clickSearch()">
+            <!-- <ion-text class="input-search-experiencesearch" placeholder="Tìm kiếm trải nghiệm gần..." [ngModel]="textsearch" 
+            ></ion-input> -->
+            <label *ngIf="!textsearch" class="text-placeholder">
+              Tìm kiếm trải nghiệm gần...
+            </label>
+            <label *ngIf="textsearch" class="text-search" >
+              {{textsearch}}
+            </label>
+          </div>
+      </div>
+    </ion-row>
+  </div>
+
+  <!-- filter item -->
+  <div class="item-filter-top background-w">
+    <ion-row  class="row-item-filter">
+        <ion-col size="3"  class="no-padding align-self-center col-border col-item-search-1" (click)="showFilter()" >
+          <div>
+            <img class="img-item-search-filter" src="../../assets/imgs/ic_filter_b.svg">
+            <ion-label class="text-filter">Lọc</ion-label>
+            <div class="div-float-badge">
+              <ion-badge style="--padding-start: 0;--padding-end: 0;" class="badge-filter" *ngIf="countfilter >0">{{countfilter}}</ion-badge>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col [ngClass]="(!sortvalue || sortvalue ==5) ? 'no-padding align-self-center col-border col-item-search-2' : 'no-padding align-self-center col-border col-item-search-2 cls-sort-filter'" >
+          <div>
+            <img *ngIf="!sortvalue || sortvalue == 5" class="img-item-search-sort" src="../../assets/imgs/ic_sort_b.svg">
+            <img *ngIf="sortvalue && sortvalue != 5" class="img-item-search-sort" src="../../assets/imgs/ic_sort_w.svg">
+            <ion-label class="text-sort">Sắp xếp</ion-label>
+            <ion-select id="epSelect" [(ngModel)]="sortvalue" style="color: transparent;position: absolute;right: 0;width: 100%;height: 48px;top:0" interface="action-sheet" class="experiencefilter-select-order" mode="ios" selectedText=" " (ionChange)="clickSort($event)" >
+                <ion-select-option value="1">iVIVU gợi ý</ion-select-option>
+                <ion-select-option value="2">Khoảng cách</ion-select-option>
+                <ion-select-option value="3">Lượt thích</ion-select-option>
+                <ion-select-option value="4">Lượt xem</ion-select-option>
+                <ion-select-option value="5">Bỏ sắp xếp</ion-select-option>
+            </ion-select>
+            </div>
+        </ion-col>
+        <ion-col size="3.6"  [ngClass]="filterHourOpen == -1 ? 'no-padding f-center align-self-center offset-right-8 col-border col-item-search-3 cls-sort-filter' : 'no-padding f-center align-self-center offset-right-8 col-border col-item-search-3'" (click)="clickDoorOpen()"><div><ion-label class="text-dooropen">Đang mở cửa</ion-label></div></ion-col>
+      </ion-row>
+     
+  </div>
+
+</div>
+<div class="float-search">
+  <ion-row>
+    <div class="no-padding col-item col-float-left">
+      <div class="f-center cls-border"  (click)="goback()"><img class="img-vector-left" src="../../assets/imgs/vector_left.svg"></div>
+
+      <div class="item-float-search p-top-6" (click)="clickSearch()">
+          <!-- <ion-searchbar class="input-search-experiencesearch" placeholder="Tìm kiếm trải nghiệm gần..." searchIcon="false" [ngModel]="textsearch" (ionClear)="cancelInput()" (click)="clickSearch()"
+          ></ion-searchbar> -->
+          <label *ngIf="!textsearch" class="text-placeholder">
+            Tìm kiếm trải nghiệm gần...
+          </label>
+          <label *ngIf="textsearch" class="text-search" >
+            {{textsearch}}
+          </label>
+      </div>
+    </div>
+  </ion-row>
+  
+</div>
+<ion-content class="experiencesearch-content" #scrollArea no-bounce [scrollEvents]="true" (ionScroll)="scrollFunction($event)">
+<div class="div-map" id="mapContainer" #mapContainer>
+</div>
+<div *ngIf="loaddatadone && listSearchDisplay.length >0" style="display: none;">
+    <div *ngFor="let slide of listSearchDisplay; let idx = index" id="{{slide.id}}">{{slide.name}}</div>
+</div>
+<div class="div-zoom-text" (click)="zoomDetail()">
+  Xem chi tiết
+</div>
+<!-- Chỉ đường -->
+<div class="div-showdirection"> 
+  <button class="btn-showdirection" (click)="showDirection()">
+    <img class="img-direction" src="./assets/img_musttry/direction.svg">
+  </button>
+</div>
+<!-- Quay về location -->
+<div class="div-mylocation"> 
+  <button class="btn-mylocation" (click)="gotoMyLocation()">
+    <img class="img-my-location" src="./assets/img_musttry/mylocation.svg">
+  </button>
+</div>
+
+  <div class='div-float-item-search float-disable content-list-search' *ngIf="loaddatadone && listSearchDisplay.length >0">
+  <ion-slides (ionSlideDidChange)="slidechange()" #myFloatSlider [options]="slideOpts">
+    <ion-slide *ngFor="let slide of listSearchDisplay; let idx = index" >
+        <div class="float-item-search-img"  (click)="itemListSearchClick(slide)">
+            <img class="img-list-item-float m-top-8" *ngIf="slide.avatar" [src]="slide.avatar" />
+            <img class="img-list-item-float m-top-8" *ngIf="!slide.avatar" src="https://cdn1.ivivu.com/iVivu/2018/02/07/15/noimage.png" />
+            <div class="float-info-search-item">
+             
+              <div class="name-search-item">{{slide.name}}</div>
+                <!-- highlight -->
+                <div *ngIf="slide.introText" class="text-hightLight m-8">{{slide.introText}}</div>
+                <div *ngIf="!slide.introText" class="text-hightLight m-8">{{slide.hightLight}}</div>
+                <!-- km & address -->
+                <div class="div-likeandshare">
+                  <div *ngIf="slide.totalDistance > 0"><span class="text-regular">{{ slide.totalDistance }} km | {{ slide.shortAdress }}</span></div>
+                  <div *ngIf="slide.totalDistance == 0"><span class="text-regular">{{ slide.shortAdress }}</span></div>
+                  <div *ngIf="slide.workingHoursDisplay"  class="text-hidden">
+                    <span class="text-regular">{{ slide.workingHoursDisplay }}</span>
+                  </div>
+                </div>
+                       
+            </div>
+        </div>
+    </ion-slide>
+  </ion-slides>
+</div>
+
+
+<div class="content-detail">
+  <div class="content-radius" (click)="changeState()"></div>
+  <div class="background-w m-bottom-8">
+    <div class="div-rectangle"  (click)="changeState()"></div>
+  </div>
+    
+              <!-- filter item -->
+              <div class="item-filter background-w">
+                <ion-row  class="row-item-filter">
+                    <ion-col size="3"  class="no-padding align-self-center col-border col-item-search-1" (click)="showFilter()" >
+                      <div>
+                        <img class="img-item-search-filter" src="../../assets/imgs/ic_filter_b.svg">
+                        <ion-label class="text-filter">Lọc</ion-label>
+                        <div class="div-float-badge">
+                          <ion-badge style="--padding-start: 0;--padding-end: 0;" class="badge-filter" *ngIf="countfilter >0">{{countfilter}}</ion-badge>
+                        </div>
+                      </div>
+                    </ion-col>
+                    <ion-col [ngClass]="(!sortvalue || sortvalue ==5) ? 'no-padding align-self-center col-border col-item-search-2' : 'no-padding align-self-center col-border col-item-search-2 cls-sort-filter'">
+                      <div>
+                        <img *ngIf="!sortvalue || sortvalue == 5" class="img-item-search-sort" src="../../assets/imgs/ic_sort_b.svg">
+                        <img *ngIf="sortvalue && sortvalue != 5" class="img-item-search-sort" src="../../assets/imgs/ic_sort_w.svg">
+                        <ion-label class="text-sort">Sắp xếp</ion-label>
+                        <ion-select id="epSelect" [(ngModel)]="sortvalue" style="color: transparent;position: absolute;right: 0;width: 100%;height: 48px;top:0" interface="action-sheet" class="experiencefilter-select-order" mode="ios" selectedText=" " (ionChange)="clickSort($event)" >
+                            <ion-select-option value="1">iVIVU gợi ý</ion-select-option>
+                            <ion-select-option value="2">Khoảng cách</ion-select-option>
+                            <ion-select-option value="3">Lượt thích</ion-select-option>
+                            <ion-select-option value="4">Lượt xem</ion-select-option>
+                            <ion-select-option value="5">Bỏ sắp xếp</ion-select-option>
+                        </ion-select>
+                      </div>
+                    </ion-col>
+                    <!-- <ion-col *ngIf="sort == -1" class="no-padding align-self-center col-border col-item-search-2 cls-sort-filter" (click)="clickSort()">
+                        <div>
+                          <img class="img-item-search-sort" src="../../assets/imgs/ic_sort_w.svg">
+                          <ion-label class="text-sort">Sắp xếp</ion-label>
+                        </div>
+                      </ion-col> -->
+                    <ion-col size="3.6"  [ngClass]="filterHourOpen == -1 ? 'no-padding f-center align-self-center offset-right-8 col-border col-item-search-3 cls-sort-filter' : 'no-padding f-center align-self-center offset-right-8 col-border col-item-search-3'" (click)="clickDoorOpen()"><div><ion-label class="text-dooropen">Đang mở cửa</ion-label></div></ion-col>
+                  </ion-row>
+                 
+              </div>
+<div class="drawer-content" >
+    <!-- <div class="content-search"> -->
+        <!-- <div class="content-radius" (click)="changeState()"></div>
+        <div class="div-rectangle"  (click)="changeState()"></div> -->
+        <div class="content-item-search">
+          <div  class="div-item-search">
+            <div class="div-empty" *ngIf="!requestGPS">
+                <img class="img-empty" src="../../assets/empty/empty.png">
+                <div class="text-experience-empty">
+                    <label>Hãy bật định vị để  iVIVU có thể gợi ý địa điểm tốt nhất gần bạn. Hoặc bạn có thể tìm kiếm địa điểm dựa trên khung tìm kiếm bên trên.</label>
+                </div>
+                <div class="button-empty">
+                    <button ion-button round outline class="button btn-requestGPS" (click)="askToTurnOnGPS()">Bật định vị ngay</button>
+                </div>
+            </div>
+           
+            <div class="div-empty" *ngIf="loaddatadone && listSearchDisplay.length ==0 && requestGPS">
+              <img class="img-empty" src="../../assets/empty/empty.png">
+              <div class="text-experience-empty">
+                  <label>Không có trải nghiệm theo điều kiện tìm kiếm của bạn. Xin vui lòng chọn bộ lọc khác.</label>
+              </div>
+          </div>
+          </div>
+  
+            <!-- Filter and list search -->
+            <div class="div-list-search-result" *ngIf="requestGPS">
+            
+              <!-- list search -->
+              <ion-list class="list-search-item" *ngIf="loaddatadone && listSearchDisplay.length >0">
+                <div [ngClass]="idx > 0 ? 'p-bottom-16 p-top-16' : 'p-bottom-16'" *ngFor="let slide of listSearchDisplay; let idx = index" >
+                      <!-- <img class="img-list-item" *ngIf="slide.avatar" [src]="slide.avatar"  (click)="itemListSearchClick(slide)"/>
+                      <img class="img-list-item" *ngIf="!slide.avatar" src="https://cdn1.ivivu.com/iVivu/2018/02/07/15/noimage.png"  (click)="itemListSearchClick(slide)"/> -->
+  
+                    <div class="div-image-like">
+                        <img class="img-list-item" *ngIf="slide.avatar" [src]="slide.avatar" (click)="itemListSearchClick(slide)"/>
+                        <img class="img-list-item" *ngIf="!slide.avatar" src="https://cdn1.ivivu.com/iVivu/2018/02/07/15/noimage.png" (click)="itemListSearchClick(slide)"/>
+                        <div class="div-like" >
+                        </div>
+                        <div class="div-img-heart">
+                          <img class="img-heart" *ngIf="slide && !slide.liked" src="./assets/imgs/ic_heart_w.svg" (click)="likePlace(slide)">
+                          <img class="img-heart" *ngIf="slide && slide.liked" src="./assets/imgs/ic_heart_red.svg" (click)="unlikePlace(slide)">
+                        </div>
+                        <div class="div-text-like" *ngIf="slide.totalLike >0">{{slide.totalLike}}</div>
+
+                        <!-- <div class="img-heart" *ngIf="slide && !slide.liked"  (click)="likePlace(slide)">
+                          <img style="padding-top:12px;width: 18px" src="./assets/imgs/ic_heart_w.svg">
+                        </div>
+                        <div class="img-heart" *ngIf="slide && slide.liked" (click)="unlikePlace(slide)">
+                            <img style="padding-top:12px;width: 18px" src="./assets/imgs/ic_heart_red.svg">
+                        </div>
+                        <div class="img-share" (click)="sharePlace(slide)"><img style="padding-top:10px;width: 18px"
+                            src="./assets/imgs/ic_share_w.svg">
+                        </div>
+                        <div class="grad" (click)="itemListSearchClick(slide)"></div> -->
+
+                     </div>
+
+                  <div class="info-search-item">
+                    <!-- Tên -->
+                    <div class="name-search-item"  (click)="itemListSearchClick(slide)">{{slide.name}}</div>
+                    <!-- highlight -->
+                    <div *ngIf="slide.introText" class="text-hightLight m-8"  (click)="itemListSearchClick(slide)">{{slide.introText}}</div>
+                    <div *ngIf="!slide.introText" class="text-hightLight m-8"  (click)="itemListSearchClick(slide)">{{slide.hightLight}}</div>
+                    <!-- km & address -->
+                    <div class="div-likeandshare">
+                      <div>
+                        <div *ngIf="slide.totalDistance > 0"><span class="text-item-regular" (click)="itemListSearchClick(slide)">{{ slide.totalDistance }} km | {{ slide.shortAdress }}</span><div class="div-img-spot" (click)="locateSpotOnMap(slide)"><img class="img-spot" src="../../assets/img_musttry/pointer-spot.svg"></div></div>
+                        <div *ngIf="slide.totalDistance == 0"><span class="text-item-regular" (click)="itemListSearchClick(slide)">{{ slide.shortAdress }}</span><div class="div-img-spot" (click)="locateSpotOnMap(slide)"><img class="img-spot" src="../../assets/img_musttry/pointer-spot.svg"></div></div>
+                        
+                      </div>
+                      <div *ngIf="slide.workingHoursDisplay" class="text-hidden" (click)="itemListSearchClick(slide)">
+                        <span class="text-item-regular ">{{ slide.workingHoursDisplay }}</span>
+                      </div>
+                      <!-- spot -->
+                      
+                    </div>
+
+                    <!-- <ion-select interface="popover" class="popup-item-click" style="color: transparent;position: absolute;top: 0;left: 0;width: 100%;height: 88px;padding: 0;padding-right: 4px;">
+                      <ion-item >Xem vị trí</ion-item>
+                      <ion-item >Xem chi tiết</ion-item>
+                    </ion-select> -->
+
+                  </div>
+
+                  
+              </div>
+             
+            </ion-list>
+           
+            <!-- loadding -->
+            <ion-list  class="list-search-item" *ngIf="!loaddatadone">
+              <div [ngClass]="idx > 0 ? 'p-top-16 p-bottom-16' : 'p-bottom-16'" *ngFor="let slideempty of listEmpty; let idx = index">
+                <!-- <ion-skeleton-text class="img-list-item"  animated style="width:104px;margin: 0;height: 88px;"></ion-skeleton-text> -->
+                <div class="div-image-like">
+                  <ion-skeleton-text class="img-list-item"  animated ></ion-skeleton-text>
+               </div>
+                <div class="info-search-item">
+                  <!-- Tên -->
+                  <div class="name-search-item">
+                    <ion-skeleton-text animated style="width:100%;margin: 0;height: 16px;"></ion-skeleton-text>
+                  </div>
+                  <!-- Lượt thích -->
+                  <ion-skeleton-text animated style="width:50%;margin: 0; margin-top:8px;height: 16px;"></ion-skeleton-text>
+                  <!-- like and share -->
+                  <div>
+                    <ion-skeleton-text animated style="width:25%;margin: 0;margin-top:8px; height: 16px;"></ion-skeleton-text>
+                  </div>
+                </div>
+              </div>
+            </ion-list>
+          </div>
+            
+        </div>
+      </div>
+  </div>  
+  <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="pageCount < totalPage">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll> -->
+</ion-content>
+<!-- <div class="content-container" style="overflow: hidden">
+<ion-content style="background: #fff;overflow: hidden" [scrollEvents]="false"> -->
+
+<!-- 
+    </ion-content>
+</div>   -->

@@ -1,0 +1,187 @@
+
+    .text-title{
+        font-size: 18px;
+        font-weight: bold;
+        padding: 0;
+    }
+    .header-text{
+      text-align: center;
+      align-self: center;
+    }
+    .cls-deal .img {
+      max-width: 100%;
+      border: 0;
+      height: auto;
+      border-radius: 6px;
+    }
+    p{
+        line-height: 1.5;
+        text-align: justify;
+    }
+    ::ng-deep{
+       
+        .img-item
+        {
+            margin-bottom: 10px;
+
+        }
+        .divcss{
+            line-height: 1.5;
+            text-align: justify;
+        }
+    }
+    .img-blog
+    { 
+        border-radius: 5px;
+        width: 100% !important;
+        height: 180px !important;
+        object-fit: cover;
+    }
+    .float-info{
+        position: absolute;
+        bottom: 10px;
+        left: 16px;
+        z-index: 11;
+    }
+    //style topdeal
+    .slide2
+    {
+      min-width: 272px;
+      height: 206px;
+      box-shadow: 2px 3px 3px 0px #dedede;
+    }
+    .slide2 .img{
+        border-radius: 6px;
+    }
+    .hotel-name{
+        font-size: 16px;
+        letter-spacing: -0.13px;
+    }
+
+    .cls-deal{
+        padding-left: 0px !important;
+        position: relative;
+        margin-bottom: 40px;
+        overflow: unset;
+      }
+      
+      .cls-deal:first-child .grad1 {
+        position: absolute; 
+        width: 100%;
+        height: 86px; // For browsers that do not support gradients /
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)); // Standard syntax (must be last) /
+        z-index: 10;
+        bottom:4px;
+        left: 0px;
+        opacity: 0.25;
+        border-radius: 6px;
+      }
+      
+      .cls-deal:first-child .float-infoicon{
+        position: absolute;
+        left: 0px;
+        z-index: 11;
+        width: 48px;
+        height: 48px;
+        padding: 0px 8px 8px 8px;
+      }
+      .cls-deal:first-child .float-infoiconheart{
+        position: absolute;
+        bottom: 59px;
+        left: 48px;
+        z-index: 11;
+        width: 48px;
+        height: 48px;
+        padding: 0px 8px 8px 8px;
+      }
+  
+      .float-infoiconheart{
+        position: absolute;
+        bottom: 59px;
+        left: 56px;
+        z-index: 11;
+        width: 48px;
+        height: 48px;
+        padding: 0px 8px 8px 8px;
+      }
+
+      .cls-deal .float-promo{
+        position: absolute;
+        top: 19px;
+        left: -4px;
+        background-color: #e52822;
+        color: #fff;
+        font-size:12px;
+        max-width: 95%;
+        height: 22px;
+        padding: 3px 8px 0px 12px;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // white-space: nowrap;
+      }
+      .float-promo-description{
+        margin: 0;
+        width: 100%;
+        color: #fff;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+  
+      .cls-deal .float-promo:after {
+        content: " ";
+        position: absolute;
+        left: 0px;
+        top: 22px;
+        border-top: 4px solid #851f1c;
+        border-left: 4px solid transparent;
+        border-bottom: none;
+      }
+  
+      .cls-deal .float-info{
+        position: absolute;
+        bottom: 10px;
+        left: 8px;
+        
+      }
+
+      //style topsale24h
+      .text-topsale{
+        color: #e52822;
+        letter-spacing: -0.34px;
+        font-size: 14px;
+        font-weight: 500;
+        //padding-left: 5px;
+      }
+      .btn-topsale{
+        color: #ffffff;
+        background-color: #e52822;
+        border-radius: 4px;
+        font-weight: bold;
+        letter-spacing: -0.29px;
+        font-size: 11px;
+        padding: 4px 10px;
+        height: 23px;
+    }
+    .cls-row-review{
+        padding: 12px 0px 10px 0px;
+    }
+    .cls-row-viewtopsale{
+        //border-bottom: solid 1px #bdbdbd;
+        //border-top: solid 1px #bdbdbd;
+        //padding: 3px 0;
+    }
+    .cls-reviewpoint{
+        padding-left: 40px;
+        top: 2px;
+        font-size: 14px;
+        width: 150px;
+        max-width: 150px;
+        position: absolute;
+    }
+    .div-like{
+      position: absolute;height: 48px;width: 48px;align-self: center;;right: -15px;top: -8px;
+    }
+    .div-share{
+      position: absolute;height: 48px;width: 48px;align-self: center;right: 30px;top: -8px;
+    }

@@ -1,0 +1,65 @@
+{
+  "_from": "cordova-plugin-fcm-with-dependency-updated-apns",
+  "_id": "cordova-plugin-fcm-with-dependency-updated-apns@1.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-KKGcUbg941W2uY7idxMRO/dazzfwgKxBFqOBUX7g7hOwZXBs5dxZ27jNJI9AheyXWKtQPU+/SvtASX5ilioojA==",
+  "_location": "/cordova-plugin-fcm-with-dependency-updated-apns",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-fcm-with-dependency-updated-apns",
+    "name": "cordova-plugin-fcm-with-dependency-updated-apns",
+    "escapedName": "cordova-plugin-fcm-with-dependency-updated-apns",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-fcm-with-dependency-updated-apns/-/cordova-plugin-fcm-with-dependency-updated-apns-1.2.0.tgz",
+  "_shasum": "90b6f0f30d649fbe9951b2d8a4c3754ed6332f2f",
+  "_spec": "cordova-plugin-fcm-with-dependency-updated-apns",
+  "_where": "/Users/itdev/Documents/Develop/Olivia_New",
+  "author": {
+    "name": "Shashank Srivastava"
+  },
+  "bugs": {
+    "url": "https://github.com/Shashank2406/cordova-plugin-fcm-with-dependecy-updated/issues"
+  },
+  "bundleDependencies": false,
+  "cordova_name": "Cordova FCM Push Plugin",
+  "deprecated": false,
+  "description": "Google Firebase Cloud Messaging Cordova Push Plugin fork with dependency updated and APNs Support",
+  "engines": [],
+  "englishdoc": "",
+  "homepage": "https://github.com/Shashank2406/cordova-plugin-fcm-with-dependecy-updated#readme",
+  "issue": "",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "apns",
+    "cordova-ios",
+    "notifications",
+    "push",
+    "firebase",
+    "fcm",
+    "ios",
+    "android",
+    "cordova"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-fcm-with-dependency-updated-apns",
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "repo": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shashank2406/cordova-plugin-fcm-with-dependecy-updated.git"
+  },
+  "version": "1.2.0"
+}

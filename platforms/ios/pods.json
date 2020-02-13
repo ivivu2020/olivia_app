@@ -1,0 +1,31 @@
+{
+    "declarations": {},
+    "sources": {
+        "https://github.com/CocoaPods/Specs.git": {
+            "source": "https://github.com/CocoaPods/Specs.git",
+            "count": 3
+        }
+    },
+    "libraries": {
+        "Firebase/Analytics": {
+            "name": "Firebase/Analytics",
+            "spec": "~> 6.1.0",
+            "count": 1
+        },
+        "Firebase/Core": {
+            "name": "Firebase/Core",
+            "spec": "~> 6.3.0",
+            "count": 2
+        },
+        "Firebase/Messaging": {
+            "name": "Firebase/Messaging",
+            "spec": "~> 6.3.0",
+            "count": 1
+        },
+        "Firebase/DynamicLinks": {
+            "name": "Firebase/DynamicLinks",
+            "spec": "~> 6.1.0",
+            "count": 1
+        }
+    }
+}

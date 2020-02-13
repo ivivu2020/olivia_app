@@ -1,0 +1,59 @@
+{
+  "_from": "com.omarben.inappreview",
+  "_id": "com.omarben.inappreview@0.0.6",
+  "_inBundle": false,
+  "_integrity": "sha512-csjy7yVqFW2vsU2Wnb3ANuJye+XiCiy5V5YZr5TM1sdELx75snwIaDVVzetkiOP/gokEbnjYIjHxism3wCFI9Q==",
+  "_location": "/com.omarben.inappreview",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "com.omarben.inappreview",
+    "name": "com.omarben.inappreview",
+    "escapedName": "com.omarben.inappreview",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/com.omarben.inappreview/-/com.omarben.inappreview-0.0.6.tgz",
+  "_shasum": "272f67a1fdcf7d47c32af6a845bbb2f9ce1ca88a",
+  "_spec": "com.omarben.inappreview",
+  "_where": "/Users/itdev/Documents/Develop/Olivia_New  Upgrade framework 5.0",
+  "author": {
+    "name": "Omar Ben brahim"
+  },
+  "bugs": {
+    "url": "https://github.com/omaxlive/com.omarben.inappreview/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "com.omarben.inappreview",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova Plugin that use the iOS class SKStore​Review​Controller to open the inapp review popup available since iOS 10.3",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.4.0"
+    }
+  ],
+  "homepage": "https://github.com/omaxlive/com.omarben.inappreview#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "license": "MIT license",
+  "name": "com.omarben.inappreview",
+  "repository": {
+    "type": "git",
+    "url": "git+https://omaxlive@github.com/omaxlive/com.omarben.inappreview.git"
+  },
+  "version": "0.0.6"
+}

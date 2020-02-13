@@ -1,0 +1,98 @@
+    .text{
+        font-size: 18px;
+        font-weight: bold
+    }
+    .button2
+    {
+        background: #ff9500;
+        color: #ffffff;
+        border-color: #ff9500;
+        width: 90%;
+    } 
+    .list-departure{
+        margin: 0;
+        display: inline-flex;
+    }
+
+    .rd-departure .radio-icon{
+        width: 12px;
+        height: 12px;
+    }
+   
+    .radio-md .radio-inner{
+        left: 1px;
+        top: 1px;
+        width: 6px;
+        height: 6px;
+    }
+    .radio-md .radio-checked {
+        border-color: #26bed6;
+    }
+    .toolbar-title-md {
+        text-align: center;
+        margin-right: 70px;
+      }  
+      .button4
+      {
+          background: #ffffff;
+          color: #ff9500;
+          border-color: #ff9500;
+          margin-top: -5px;
+          font-size: 12px;
+      }
+      ::ng-deep{
+        .radiocss
+        {
+          border-radius: 50%;
+          border: solid  1px #bdbdbd;
+          box-sizing: content-box;
+          width: 12px;
+          height: 12px;
+        }
+        .ion-item
+    {
+      --padding-start: 0px;
+      --inner-border-width: 0 0 0px 0;
+      --min-height: 0px;
+    }
+        .rd-text{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+      }
+      .cls-label
+      {
+        font-size: 12px;
+        font-weight: 300;
+        color: #828282;
+      }
+
+      .label-name{
+        font-size: 12px;
+        font-weight: 300;
+        color: #828282;
+    }
+    .label-input{
+      font-size: 14px;
+      font-weight: 300;
+      color: #000000;
+    }
+    .label-input-order{
+      font-size: 14px;
+      font-weight: 300;
+      color: #828282;
+    }
+
+    .div-title-other-request{
+      font-size: 18px;
+      font-weight: 600;
+      color: #000000;
+      padding-top: 30px;
+    }
+    .div-title-export-order{
+      font-size: 18px;
+      font-weight: 600;
+      color: #000000;
+      padding-top: 12px;
+    }

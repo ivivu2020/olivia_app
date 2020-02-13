@@ -1,0 +1,45 @@
+<!--
+  Generated template for the CuspointsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <!-- <ion-toolbar style="min-height: 0px;text-align: center"> -->
+    <ion-row>
+      <ion-col style="text-align: center;height: 48px;margin-bottom: 10px;">
+          <div style="align-self: center" >
+          <div style="position: absolute;height: 48px;width: 48px;align-self: center;" (click)="goback()">
+            <img style="height: 48px; padding: 8px;margin-top: 0px;margin-left:-8px" src="./assets/imgs/ios-arrow-round-back.svg" >
+          </div>
+          <div style="padding-top: 11px;font-size: 20px;font-weight: bold;"><label class="text-title">iVIVUPoint</label></div>
+          </div>
+      </ion-col>
+      </ion-row>
+  <!-- </ion-toolbar> -->
+</ion-header>
+
+
+<ion-content padding>
+  <label style="font-size: 16px;color: #26bed6;font-weight: 500">
+    Bạn đang có {{point}} điểm
+  </label>
+  <div *ngFor="let item of actionHistory">
+    <ion-row style="margin-left: -5px">
+      <ion-col text-left size="9">
+        <label style="font-size: 14px">
+          {{item.note}}
+        </label>
+      </ion-col>
+      <ion-col text-right size="3">
+        <label *ngIf="item.unitPoint>0" style="font-size: 14px;font-weight: bold;color: #26bed6;">
+          +{{item.unitPoint}}
+        </label>
+        <label *ngIf="item.unitPoint<0" style="font-size: 14px;font-weight: bold;color: #26bed6;">
+          {{item.unitPoint}}
+        </label>
+      </ion-col>
+    </ion-row>
+    <ion-row style="border-bottom:solid 1px #ccc;margin: 10px 0px;"></ion-row>
+  </div>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header class="header-infobkg">
+  <ion-toolbar class="toolbar-infobkg">
+    <ion-title class="title-infobkg">Mã giảm giá</ion-title>
+    <ion-buttons start class="cls-button">
+      <button slot="primary" routerDirection="root" class="btn-close" (click)="closeModal()">
+        <img class="img-close" src="./assets/ic_close.svg" >
+      </button>
+    </ion-buttons>
+</ion-toolbar>
+  <div class="cls-m16">
+   
+      <ion-row style="margin-left: -5px">
+          <ion-col class="cls-col" size="8.5">
+            <ion-item class="ion-item">
+              <ion-input class="text-input"  (ionFocus)="click()" placeholder="Nhập mã giảm giá"  (ionInput)="textchange()" [(ngModel)]="promocode" type="text" *ngIf="ischecktext==3" class="none"  ></ion-input>
+              <ion-input class="text-input"  (ionFocus)="click()" placeholder="Nhập mã giảm giá"  (ionInput)="textchange()" [(ngModel)]="promocode" type="text" *ngIf="ischecktext==1||ischecktext==2" class="error"  ></ion-input>
+              <ion-input class="text-input"  (ionFocus)="click()" placeholder="Nhập mã giảm giá"  (ionInput)="textchange()" [(ngModel)]="promocode" type="text" *ngIf="ischecktext==0" class="click" ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3.5" style="text-align: right;">
+              <button style="margin-top: 35px" *ngIf="!ischeckbtnpromo" (click)="promofunc()" ion-button round outline class="button btnnone">Áp dụng</button>
+              <button style="margin-top: 35px" *ngIf="ischeckbtnpromo"  ion-button round outline class="button btnnonesuccess"><span>
+                  <ion-icon name="checkmark"></ion-icon>
+              </span></button>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-label *ngIf="ischeckerror==1" style="color: rgb(229, 40, 34);font-size: 12px">{{msg}}</ion-label>
+        <ion-label *ngIf="ischeckerror==0" style="color:#828282;font-size: 12px">{{msg}}</ion-label>
+      </ion-row>
+</div>
+</ion-header>

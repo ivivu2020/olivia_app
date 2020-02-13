@@ -1,0 +1,26 @@
+
+    .text-title{
+        font-size: 18px;
+        font-weight: bold
+    }
+
+    ::ng-deep{
+        .content-policy
+        {
+            font-weight: 300;
+            font-size: 14px;
+    
+            label > p {
+                margin: 2px 0;
+                line-height: 20px;
+                font-weight: 300;
+                font-size: 14px;
+            }
+
+            p > em > strong{
+                font-style: normal;
+                font-weight: 300 !important;
+            }
+        }
+    }
+    

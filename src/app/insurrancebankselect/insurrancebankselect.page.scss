@@ -1,0 +1,73 @@
+::ng-deep{
+    .action-sheet-cancel.sc-ion-action-sheet-ios{
+        background-color: #ff9500;
+        color: #ffffff !important;
+        width: 91%;
+        font-size: 18px;
+        margin: 8px 16px;
+        text-align: center;
+        border-radius: 4px;
+        .action-sheet-button-inner.sc-ion-action-sheet-ios{
+            justify-content: center;
+        }
+    }
+    .action-sheet-group::-webkit-scrollbar {
+        width: 1em;
+        display: block !important;
+    }
+    
+    .action-sheet-group::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+    
+    .action-sheet-group::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        outline: 1px solid slategrey;
+    }
+
+    .action-sheet-title.sc-ion-action-sheet-ios{
+        font-size: 18px;
+        color: black;
+        font-weight: bold;
+    }
+    //style cho ios
+    .action-sheet-container.sc-ion-action-sheet-ios{
+        padding: 0;
+    }
+    .action-sheet-group.sc-ion-action-sheet-ios:last-child{
+        margin: 0;
+        border-radius: 0;
+        .action-sheet-button.sc-ion-action-sheet-ios{
+            font-size: 18px;
+            //color:#fff;
+        }
+    }
+    .action-sheet-title.sc-ion-action-sheet-ios{
+        text-align: left;
+        font-size: 18px;
+        color: #000;
+        font-weight: bold;
+    }
+    .action-sheet-button-inner.sc-ion-action-sheet-ios{
+        justify-content: left;
+    }
+    .action-sheet-button.sc-ion-action-sheet-ios{
+        font-size: 14px;
+        color: #828282;
+        height: 60px;
+        text-align: left;
+    }
+
+    .action-sheet-button-inner.sc-ion-action-sheet-ios {
+        justify-content: flex-start;
+    }
+    .action-sheet-title.sc-ion-action-sheet-ios{
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .action-sheet-group.sc-ion-action-sheet-ios{
+        border-radius: 0;
+        margin-bottom: 0;
+        overflow: auto;
+    }
+}

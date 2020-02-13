@@ -1,0 +1,470 @@
+<ion-header>
+  <ion-row>
+    <ion-col size="2" class="header-text header-icon" (click)="goback()">
+      <img style="height: 48px; padding: 8px;" src="./assets/imgs/ios-arrow-round-back.svg">
+    </ion-col>
+    <ion-col size="8" class="header-text">
+      <ion-title class="text-title">
+        Kiểm tra
+      </ion-title>
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+  <div class="content-carcombo">
+    <div class="col-step">
+      <img class="img-step" src="./assets/step/step_1.svg">
+    </div>
+
+    <div class="div-title">
+      <ion-label class="combo-title">{{titlecombo}} |</ion-label>
+      <ion-label class="combo-sub-title"> {{titlecomboprice}} VND/Khách</ion-label>
+    </div>
+
+    <div class="carcombo-hotel">
+      <div class="img-hotel">
+        <img class="img-hotel-avatar" *ngIf="Avatar" [src]="Avatar" />
+        <img class="img-hotel-avatar" *ngIf="!Avatar" src="https://cdn1.ivivu.com/iVivu/2018/02/07/15/noimage.png" />
+      </div>
+
+      <div class="info-hotel">
+        <!-- Tên -->
+        <div class="name-hotel f-bold">
+          <ion-label>{{Name}}</ion-label>
+        </div>
+        <!-- Địa chỉ -->
+        <div class="div-address p-top-13">
+          <!-- img-local -->
+          <div class="div-location">
+            <img class="img-location" src="./assets/iocnsearch/ic_location.svg">
+          </div>
+          <!-- address -->
+          <div class="text-address text-thin">
+            <ion-label>{{Address}}</ion-label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="div-split sp-info-hotel"></div>
+
+    <!-- Checkin, checkout -->
+    <div class="div-cin-cout">
+      <ion-row>
+        <!-- cin -->
+        <ion-col size="3.6" class="no-padding">
+          <div class="div-label-small">Nhận phòng</div>
+          <div class="div-date">{{cinshow}}</div>
+        </ion-col>
+        <!-- cout -->
+        <ion-col class="no-padding align-center">
+          <div class="div-label-small">Trả phòng</div>
+          <div class="div-date">{{coutshow}}</div>
+        </ion-col>
+        <!-- duration -->
+        <ion-col size="3.4" class="no-padding align-center">
+          <div class="div-label-small">Số đêm</div>
+          <div class="div-date-cout">{{duration}} đêm</div>
+        </ion-col>
+      </ion-row>
+      <div class="div-split sp-ci-co" *ngIf="!loadpricedone"></div>
+    </div>
+    <div class="carcombo-departure" *ngIf="PriceAvgPlusTAStr"  class="divheight" style="position: relative">
+      <label class="text-location">
+        Đi từ {{fromPlace}}
+      </label>
+      <div>
+        <div class="placepoint">
+        </div>
+        <div class="placeline">
+        </div>
+        <div class="placepoint" style="top: 73%">
+        </div>
+      </div>
+      <!-- <div *ngIf="departTicketSaleshow!=0&&(pickup_pointsdep.length>1||drop_off_points_at_arrivedep.length>1)">
+          <div class="placepoint" style="top:35%">
+          </div>
+          <div class="placeline" style="top:41%;height: 21%;">
+          </div>
+          <div class="placepoint" style="top: 62%">
+          </div>
+        </div>
+      <div *ngIf="departTicketSaleshow==0">
+          <div class="placepoint" style="top: 34%;">
+          </div>
+          <div class="placeline" style="top: 40%;height: 20%;">
+          </div>
+          <div class="placepoint" style="top:61%">
+          </div>
+        </div> -->
+      <ion-row style="margin-left: -5px">
+         
+        <ion-col size="8">
+            <ion-label class="text-infocar" style="font-size: 14px">{{departVehicleStr}}</ion-label>
+          <div >
+              <ion-label class="text-infocar">{{departDateTimeStr}}</ion-label>
+              <div class="placediv" style="min-height: 36px;">
+                <span class="combo-departure-time"> {{departTimeStrd}} </span>
+                <span (click)="showmsg(pickup_pointsdepartd)" style="font-size: 14px;">{{pickup_pointsdepartd}}</span>
+                <div>
+                  <ion-label (click)="showmsg(addressdepartd)" class="text-infocar">{{addressdepartd}}</ion-label>
+                </div>
+         
+              </div>
+              <div class="placediv" style="margin-left: 10px;" style="min-height: 36px;">
+                <span class="combo-departure-time"> {{departTimeStrt}} </span>
+                <span style="font-size: 14px;" (click)="showmsg(pickup_pointsdepartt)">{{pickup_pointsdepartt}}</span>
+                <div >
+                  <ion-label (click)="showmsg(addressdepartt)" class="text-infocar">{{addressdepartt}}</ion-label>
+                </div>
+              </div>
+              <div *ngIf="pickup_pointsdep.length>1||drop_off_points_at_arrivedep.length>1">
+                <ion-label class="text-change" (click)="changeplace(0)">Đổi điểm đón/trả</ion-label>
+              </div>
+          </div>
+       
+
+        </ion-col>
+        <ion-col size="4" *ngIf="departTicketSaleshow!=0" style="align-self: center">
+          <div *ngIf="checkdiscountdepart&&departTicketSaleshow!=0" class="combo-flight-price"
+            style="margin-bottom: 5px;text-align: right;height: 20px">
+            <span class="combo-flight-price-label-down">Giảm <span
+                class="flight-price">{{departTicketSaleshow}}</span></span>
+          </div>
+          <div *ngIf="!checkdiscountdepart" class="combo-flight-price-label-up"
+            style="margin-bottom: 5px;text-align: right;height: 20px">
+            <span class="combo-flight-price-label-up">Phụ thu <span
+                class="flight-price">{{departTicketSaleshow}}</span></span>
+          </div>
+          <div class="button-float-right" style="text-align: right">
+            <button ion-button round outline class="button btn-change" (click)="showListCar(0)">Đổi giờ</button>
+          </div>
+        </ion-col>
+        <ion-col size="4" *ngIf="departTicketSaleshow==0" style="align-self: center">
+          <div class="button-float-right" style="text-align: right">
+            <button ion-button round outline class="button btn-change" (click)="showListCar(0)">Đổi giờ</button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="carcombo-departure" *ngIf="PriceAvgPlusTAStr" class="divheight"  style="position: relative">
+        <div>
+            <div class="placepoint" style="top:33%">
+            </div>
+            <div class="placeline" style="top: 37%;height: 23%;">
+            </div>
+            <div class="placepoint" style="top: 60%">
+            </div>
+          </div>
+          <!-- <div *ngIf="returnTicketSaleshow!=0&&(pickup_pointsret.length>1||drop_off_points_at_arriveret.length>1)">
+              <div class="placepoint" style="top:26%">
+              </div>
+              <div class="placeline" style="top:33%;height: 21%;">
+              </div>
+              <div class="placepoint" style="top: 55%">
+              </div>
+            </div>
+          <div *ngIf="returnTicketSaleshow==0&&pickup_pointsret.length==1&&drop_off_points_at_arriveret.length==1">
+              <div class="placepoint" style="top: 30%;">
+              </div>
+              <div class="placeline" style="top: 39%;height: 21%;">
+              </div>
+              <div class="placepoint" style="top:61%">
+              </div>
+            </div>
+            <div *ngIf="returnTicketSaleshow==0&&(pickup_pointsret.length>1||drop_off_points_at_arriveret.length>1)">
+              <div class="placepoint" style="top: 27%;">
+              </div>
+              <div class="placeline" style="top: 34%;height: 20%;">
+              </div>
+              <div class="placepoint" style="top:55%">
+              </div>
+            </div> -->
+      <ion-row style="margin-left: -5px;margin-top: 10px">
+         
+        <ion-col size="8">
+            <ion-label class="text-infocar" style="font-size: 14px">{{returnVehicleStr}}</ion-label>
+            <div >
+          <ion-label class="text-infocar">{{returnDateTimeStr}}</ion-label>
+          <div class="placediv" style="min-height: 36px;">
+            <span class="combo-departure-time">{{returnTimeStrd}} </span>
+            <span style="font-size: 14px;"  (click)="showmsg(pickup_pointsreturnd)">{{pickup_pointsreturnd}}</span>
+            <div>
+              <ion-label class="text-infocar" (click)="showmsg(addressreturnd)">{{addressreturnd}}</ion-label>
+            </div>
+          </div>
+          <div class="placediv" style="min-height: 36px;">
+            <span class="combo-departure-time">{{returnTimeStrt}} </span>
+            <span style="font-size: 14px;" (click)="showmsg(pickup_pointsreturnt)">{{pickup_pointsreturnt}}</span>
+            <div>
+                <ion-label class="text-infocar" (click)="showmsg(addressreturnt)">{{addressreturnt}}</ion-label>
+              </div>
+          </div>
+          <div  *ngIf="pickup_pointsret.length>1||drop_off_points_at_arriveret.length>1">
+            <ion-label class="text-change" (click)="changeplace(1)">Đổi điểm đón/trả</ion-label>
+          </div>
+        </div>
+        </ion-col>
+        <ion-col size="4" *ngIf="returnTicketSaleshow!=0" style="align-self: center">
+      
+          <div *ngIf="checkdiscountreturn" class="combo-flight-price"
+            style="margin-bottom: 5px;text-align: right;height: 20px">
+            <span class="combo-flight-price-label-down">Giảm <span
+                class="flight-price">{{returnTicketSaleshow}}</span></span>
+          </div>
+          <div *ngIf="!checkdiscountreturn" class="combo-flight-price-label-up"
+            style="margin-bottom: 5px;text-align: right;height: 20px;">
+            <span class="combo-flight-price-label-up">Phụ thu <span
+                class="flight-price">{{returnTicketSaleshow}}</span></span>
+          </div>
+          <div class="button-float-right" style="text-align: right">
+            <button ion-button round outline class="button btn-change" (click)="showListCar(1)">Đổi giờ</button>
+          </div>
+        </ion-col>
+        <ion-col size="4" *ngIf="returnTicketSaleshow==0" style="align-self: center">
+
+          <div class="button-float-right" style="text-align: right">
+            <button ion-button round outline class="button btn-change" (click)="showListCar(1)">Đổi giờ</button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- skeleton -->
+    <div class="carcombo-departure" *ngIf="!PriceAvgPlusTAStr">
+      <ion-row>
+        <ion-col size="3.6" class="no-padding">
+          <ion-skeleton-text animated style="width:100%;margin-top: 4px;height: 16px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width:75%;margin-top: 4px;height: 16px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width:50%;margin-top: 4px;height: 16px;"></ion-skeleton-text>
+        </ion-col>
+        <ion-col class="no-padding align-center">
+
+        </ion-col>
+
+        <ion-col size="3.4" class="no-padding align-center">
+          <ion-skeleton-text animated style="width:50%;margin-top: 4px;height: 16px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width:88px;margin-top: 4px;height: 30px;"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="div-split sp-ci-co"></div>
+    <!-- Thông tin phòng -->
+    <div *ngIf="PriceAvgPlusTAStr" class="room-info">
+      <label class="combo-title">
+        {{nameroom}}
+      </label>
+      <div class="text-regular p-top-8" text-wrap>
+        <img class="image-card" src="./assets/ic_facility/ic_people.svg"> {{roomnumber}} phòng | {{adulsdisplay}} người
+        lớn |
+        {{childrendisplay}} trẻ em {{textage}}
+      </div>
+      <div class="text-regular p-top-15">
+        <img class="image-card" *ngIf="breakfast" src="./assets/ic_facility/ic_food_b.svg"> {{breakfast}}
+      </div>
+      <hr class="cls-hr">
+    </div>
+    <!-- chính sách hủy combo -->
+    <!-- <div *ngIf="PriceAvgPlusTAStr" (click)="showPenalty()">
+      <ion-row>
+        <label class="text-regular">
+          Chính sách hủy combo
+        </label>
+      </ion-row>
+      <div class="div-split sp-room-penalty"></div>
+    </div> -->
+
+    <div *ngIf="point>0 && PriceAvgPlusTAStr&& loadcarspricedone" class="div-voucher">
+      <div class="div-flex">
+        <div class="div-first">
+          <div *ngIf="!ischeckpoint" class="div-checkpoint">
+              <ion-checkbox class="check-point" mode="md" (ionChange)="edit()" [disabled]="ischeckbtnpromo==true?'true':false" checked="false" [(ngModel)]="ischeck" color="secondary"></ion-checkbox>
+              <div class="div-point  cls-ml8">
+                <div  class="text-point">Dùng {{pointshow}} điểm</div>
+                <div class="num-point">
+                (-{{price}}đ)
+                </div>
+              </div>
+          </div>
+          <div *ngIf="ischeckpoint" class="div-checkpoint">
+              <ion-checkbox class="check-point" mode="md" (ionChange)="edit()" checked="false" [disabled]="ischeckbtnpromo==true?'true':false" [(ngModel)]="ischeck" color="secondary"></ion-checkbox>
+              <div class="div-point cls-ml8">
+                <div  class="text-point">Dùng {{pointshow}} điểm</div>
+                <div class="num-point">
+                (-{{PriceAvgPlusTAStr}}đ)
+                </div>
+              </div>
+          </div>
+        </div>
+        <div  class="div-col-split">
+        </div>
+         
+        <div *ngIf="!ischeck" class="div-promotion">
+        <ion-label (click)="showdiscount()" class="text-point">{{textpromotion}}</ion-label>
+        </div>
+        <div *ngIf="ischeck" class="div-promotion">
+          <ion-label class="text-promotion">Nhập mã giảm giá</ion-label>
+          </div>
+      </div>
+      <hr class="cls-hr">
+
+      <div *ngIf="ischeck||ischeckbtnpromo&& loadcarspricedone">
+        <ion-row>
+          <ion-col size="6" class="no-padding">
+            <div>
+              <h2 class="text-name" style="font-size: 18px;" position="stacked">{{adulsdisplay}} người lớn
+                {{childrendisplay}} trẻ em</h2>
+              <p class="text-tax-include" class="text-tax-include">Giá đã bao gồm thuế & phí</p>
+            </div>
+          </ion-col>
+          <ion-col size="6" class="no-padding">
+            <p class="total-price" style="text-align: right">
+              {{Pricepointshow}}đ
+              <sup>
+                <img src="./assets/ic_green/ic_info.svg">
+              </sup>
+            </p>
+            <p *ngIf="Pricepointshow!=0" class="text-room-price-ota">
+              {{PriceAvgPlusTAStr}}đ
+            </p>
+          </ion-col>
+        </ion-row>
+      </div>
+      <div *ngIf="!ischeck&&!ischeckbtnpromo">
+        <ion-row>
+          <ion-col size="6" style="padding: 0;">
+            <div>
+              <h2 class="text-name" style="font-size: 18px;" position="stacked">{{adulsdisplay}} người lớn
+                {{childrendisplay}} trẻ em</h2>
+              <p class="text-tax-include">Giá đã bao gồm thuế & phí</p>
+            </div>
+          </ion-col>
+          <ion-col size="6" style="padding: 0;">
+            <p class="total-price" style="text-align: right">
+              {{PriceAvgPlusTAStr}}đ
+              <sup>
+                <img src="./assets/ic_green/ic_info.svg">
+              </sup>
+            </p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+
+    <div *ngIf="(point<=0||!point)&&PriceAvgPlusTAStr">
+      <div style="margin-top: 10px">
+        <label class="combo-title">
+          Mã giảm giá
+        </label>
+        <ion-row>
+          <ion-col size="8" class="no-padding">
+            <ion-item style="--padding-start: 0px;font-size: 14px;">
+              <ion-label style="color: #828282" position="floating">Nhập mã giảm giá</ion-label>
+              <ion-input (click)="click()" (ionChange)="textchange()" [(ngModel)]="promocode" type="text"
+                *ngIf="ischecktext==3" class="none"></ion-input>
+              <ion-input (click)="click()" (ionChange)="textchange()" [(ngModel)]="promocode" type="text"
+                *ngIf="ischecktext==1||ischecktext==2" class="error"></ion-input>
+              <ion-input (click)="click()" (ionChange)="textchange()" [(ngModel)]="promocode" type="text"
+                *ngIf="ischecktext==0" class="click"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4" class="no-padding" style="padding-right: 0;align-self: flex-end;">
+            <div style="text-align: right">
+              <button *ngIf="!ischeckbtnpromo" (click)="promofunc()" ion-button round outline
+                class="button btn-change btn-apply">Áp dụng</button>
+              <button *ngIf="ischeckbtnpromo" ion-button round outline class="button btnnonesuccess"><span>
+                  <ion-icon name="checkmark"></ion-icon>
+                </span></button></div>
+
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-label *ngIf="ischeckerror==1" style="color: rgb(229, 40, 34);font-size: 12px">{{msg}}</ion-label>
+          <ion-label *ngIf="ischeckerror==0" style="color:#828282;font-size: 12px">{{msg}}</ion-label>
+        </ion-row>
+      </div>
+      <div class="div-split-panel"></div>
+      <div *ngIf="!ischeckbtnpromo">
+        <ion-row>
+          <ion-col size="6" style="padding: 0;">
+            <div>
+              <h2 class="text-name" style="font-size: 18px;" position="stacked">{{adulsdisplay}} người lớn
+                {{childrendisplay}} trẻ em</h2>
+              <p class="text-tax-include">Giá đã bao gồm thuế & phí</p>
+            </div>
+          </ion-col>
+          <ion-col size="6" style="padding: 0;">
+            <p class="total-price" style="text-align: right">
+              {{PriceAvgPlusTAStr}}đ
+              <sup>
+                <img src="./assets/ic_green/ic_info.svg">
+              </sup>
+            </p>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div *ngIf="ischeckbtnpromo">
+        <ion-row>
+          <ion-col size="6" style="padding: 0;">
+            <div>
+              <h2 class="text-name" style="font-size: 18px;" position="stacked">{{adulsdisplay}} người lớn
+                {{childrendisplay}} trẻ em</h2>
+              <p class="text-tax-include">Giá đã bao gồm thuế & phí</p>
+            </div>
+          </ion-col>
+          <ion-col size="6" style="padding: 0;">
+            <p class="total-price" style="text-align: right">
+              {{Pricepointshow}}đ
+              <sup>
+                <img src="./assets/ic_green/ic_info.svg">
+              </sup>
+            </p>
+            <p *ngIf="Pricepointshow!=0" class="text-room-price-ota">
+              {{PriceAvgPlusTAStr}}đ
+            </p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+    <div class="div-split-panel" *ngIf="!loadpricedone"></div>
+    <!-- <ion-row>
+            <ion-col size="6" style="padding: 0;">
+              <div>
+                <h2 class="text-name" style="font-size: 18px;font-weight: bold" position="stacked">{{adulsdisplay}} người lớn, {{childrendisplay}} trẻ em</h2>
+                <p class="text-tax-include">Giá đã bao gồm thuế & phí</p>
+              </div>
+            </ion-col>
+            <ion-col size="6" style="padding: 0;">
+              <p class="total-price" style="text-align: right" >
+                {{PriceAvgPlusTAStr}}đ
+                <sup>
+                  <img src="./assets/ic_green/ic_info.svg">
+                </sup>
+              </p>
+            </ion-col>
+          </ion-row> -->
+    <div *ngIf="PriceAvgPlusTAStr">
+      <ion-row *ngIf="PriceAvgPlusTAStr">
+        <ion-col style="padding:5px 0">
+          <label class="text-thin-italic">*iVIVU không đảm bảo giá vé này cho đến khi bạn
+            hoàn tất thanh toán và mã ghế ngồi được xác nhận!</label>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-row *ngIf="!PriceAvgPlusTAStr && loadpricedone">
+      <ion-col style="padding:5px 0">
+        <label style="font-size:14px;color:#828282;font-style: italic">{{msgwrn}}</label>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+<ion-footer>
+  <div *ngIf="PriceAvgPlusTAStr" class="div-footer" style="background-color: #ffffff; text-align: center">
+    <button (click)="next()" ion-button round outline class="button button-footer">Xác nhận</button>
+  </div>
+  <div *ngIf="!PriceAvgPlusTAStr && loadpricedone" class="div-footer"
+    style="background-color: #ffffff; text-align: center">
+    <button (click)="sendRequestCombo()" ion-button round outline class="button button-footer">Gửi yêu cầu</button>
+  </div>
+</ion-footer>

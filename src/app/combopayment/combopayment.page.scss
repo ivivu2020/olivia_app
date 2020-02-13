@@ -1,0 +1,137 @@
+
+    .text-name
+    {
+      font-weight: bold;
+      font-size: 14px;
+      .text-green
+      {
+        color: #26bed6
+      }
+    }
+    .text-date
+    {
+        margin-top: 0px;
+        font-weight: bold;
+        font-size: 14px
+    }
+    .image-card{
+      display: initial !important;
+    }
+    .total-price{
+      color: #26bed6;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .button2
+    {
+        border-color: #F79221;
+        background-color: #F79221;
+        color: #ffffff;
+        width: 90%;
+        height: 48px;
+
+    }
+    .item-md ion-thumbnail ion-img, .item-md ion-thumbnail img {
+      width: 104px;
+      height: 104px;
+    }
+    .item.item-md .checkbox-md {
+      position: static;
+      display: block;
+      margin: 9px 9px 9px 4px;
+    }
+    .text-room-price-ota{
+      color:#828282;
+      font-size: 14px;
+      text-align: right;
+      text-decoration: line-through;
+      margin: 20px;
+      margin-top: -20px;
+  }
+  .toolbar-title-md {
+    text-align: center;
+    margin-right: 70px;
+  }  
+  .div-wrapimg {
+    position: relative;
+    height:110px;
+    width: 104px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+hr
+{
+  background-color: #ccc;
+}
+.div-title{
+  .combo-title{
+      font-size: 18px;
+      font-weight: bold;
+      color: #000000;
+  }
+  .combo-sub-title{
+      font-size: 18px;
+      font-weight: bold;
+      color: #f59233;
+  }
+  .combo-title{
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+@media (min-width:287px) and (max-width: 359px) {
+  .col-description-roompayment{
+    max-width: 188px;
+    left: 12px;
+  }
+
+}
+.text-infocar
+{
+    font-weight: 300;
+    color: #4f4f4f;
+    font-size: 12px
+}
+.combo-departure-time{
+    font-size: 14px;
+      font-weight: 500;
+      padding-top: 4px;
+  }
+  .combo-flight-price-label-down{
+    font-size: 14px;
+    color: #003c71;
+  }
+  .flight-price{
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .div-split-panel{
+    height: 7px;
+    background: #f2f2f2;
+    margin-top: 12px;
+    margin-left: -16px;
+    margin-right: -16px;
+}
+.text-location
+{
+    font-size: 16px;
+    font-weight: bold
+}
+.combo-departure-time{
+    font-size: 14px;
+      font-weight: 600;
+      padding-top: 4px;
+  }
+  .combo-flight-price-label-down{
+    font-size: 14px;
+    color: #003c71;
+  }
+  .flight-price{
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .combo-flight-price-label-up{
+    font-size: 14px;
+    color: #ec971f;
+  }
+  

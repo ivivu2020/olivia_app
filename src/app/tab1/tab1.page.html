@@ -1,0 +1,1114 @@
+<ion-content
+  #scrollArea
+  [fullscreen]="true"
+  class="cls-content-cover"
+  style="-background:transparent;overflow: hidden;--offset-bottom: 0px !important;"
+  [scrollEvents]="true"
+  (ionScroll)="scrollFunction($event)"
+>
+  <ion-refresher
+    style="margin-top: 24px;"
+    slot="fixed"
+    pullMin="100"
+    pullMax="200"
+    (ionRefresh)="doRefresh($event)"
+  >
+    <ion-refresher-content
+      pullingIcon="none"
+      refreshingSpinner="circles"
+      refreshingText=""
+    ></ion-refresher-content>
+  </ion-refresher>
+  <div class="background">
+    <div style="text-align: center">
+      <img style="width: 100px;margin-top: 37px" src="./assets/logo/logo.svg" />
+      <!-- <img-loader style="width: 50px;margin-top: 10px" src="./assets/logo/logo.svg"></img-loader> -->
+    </div>
+    <!-- <ion-segment [(ngModel)]="pet">
+      <ion-segment-button (click)="clickks()" style="color:#ffffff;border-color: #ffffff" value="khachsan">
+        Khách sạn
+      </ion-segment-button>
+      <ion-segment-button (click)="clickvmb()" style="color:#ffffff;border-color: #ffffff" value="vemaybay">
+        Vé máy bay
+      </ion-segment-button>
+    </ion-segment> -->
+    <div *ngIf="ischeckvmb == true"></div>
+    <div *ngIf="ischeckks == true" padding="">
+      <div style="text-align: center">
+        <label style="color: #ffffff;font-size: 18px;font-weight: bold">
+          Trải nghiệm kỳ nghỉ tuyệt vời
+        </label>
+      </div>
+
+      <ion-row
+        style="background: #ffffff;border-radius: 2px;height:48px;margin-top: 15px"
+        (click)="change()"
+      >
+        <div class="div-width">
+          <div class="img-input">
+            <img
+              class="img-padding img-location"
+              src="./assets/iocnsearch/ic_location.svg"
+            />
+          </div>
+
+          <div [ngClass]="(input && input.length >36) ? 'div-input-right text-input-search-wraptext' : 'div-input-right text-input-search'">
+            <label *ngIf="!input" class="text-placeholder">
+              Bạn muốn đi đâu?
+            </label>
+            <label *ngIf="input" class="text-search">
+              {{ input }}
+            </label>
+          </div>
+        </div>
+      </ion-row>
+      <div *ngIf="ischecksearch == false">
+        <ion-row
+          style="background: #ffffff;border-radius: 2px;height:48px;margin-top: 10px"
+          (click)="openPickupCalendar()"
+        >
+        <div class="div-width">
+          <div class="div-cin">
+              <div class="img-cin-cout"><img class="img-padding img-checkin" src="./assets/iocnsearch/ic_checkin.svg"/></div>
+
+              <div class="div-input-right text-input-cin">
+                  <div class="text-cin">
+                      <label class="text-cin-input">{{ cindisplay }}</label>
+                    </div>
+                    <div class="font-thu" *ngIf="cofdate==0">
+                      <label class="text-color text-cinthu">{{ cinthu }}</label>
+                  </div>
+                  <div class="font-thu" *ngIf="cofdate==1" >
+                    <label class="text-color text-cinthu" style="color: #e52822;">{{cinthu}}</label>
+                  </div>
+              </div>
+              <div class="div-split"></div>
+          </div>
+          <div class="div-cout">
+              <div class="img-cin-cout"><img class="img-padding img-checkout" src="./assets/iocnsearch/ic_checkout.svg"/></div>
+
+              <div class="div-input-right text-input-cout">
+                  <div class="text-cin">
+                      <label class="text-cin-input">{{ coutdisplay }}</label>
+                    </div>
+                    <div  class="font-thu" >
+                      <label  *ngIf="cotdate==0" class="text-color text-cinthu">{{coutthu}}</label>
+                      <label style="color: #e52822" *ngIf="cotdate==1" class="text-color text-cinthu" >{{coutthu}}</label>
+                    </div>
+              </div>
+          </div>
+        </div>
+        </ion-row>
+
+        <ion-row (click)="openmnu()" style="background: #ffffff;border-radius: 2px;margin-top: 10px;height:48px" >
+          <div class="div-width">
+              <div class="img-cin-cout"><img class="img-padding img-people" src="./assets/iocnsearch/ic_people.svg"/></div>
+
+              <div class="div-input-right">
+                  <div class="text-pax">
+                      <label class="text-cin-input">{{ adult }} người lớn, {{ child }} trẻ em</label>
+                    </div>
+                    <div class="font-thu">
+                      <label class="text-color text-cinthu">{{ roomnumber }} phòng</label>
+                  </div>
+              </div>
+          </div>
+        </ion-row>
+
+        <ion-row
+          *ngIf="!chuoi"
+          style="background: #ffffff;border-radius: 2px;margin-top: 10px;height:48px"
+          (click)="openmnu1()"
+        >
+          <ion-col style="text-align: center;margin: 10px 8px 10px 0">
+            <ion-label style="color: #828282 ;font-size: 16px;"
+              >Tìm theo giá, sao, đánh giá</ion-label
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row
+          *ngIf="chuoi"
+          style="background: #ffffff;border-radius: 2px;margin-top: 10px;height:48px"
+          (click)="openmnu1()"
+        >
+          <ion-col style="text-align: center;align-self: center;">
+            <ion-label style="font-size: 16px;">{{ chuoi }} </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <button
+            ion-button
+            round
+            style="margin-top: 24px; margin-bottom:8px"
+            (click)="search()"
+            class="button btn-search"
+            clear
+          >
+            Tìm kiếm
+          </button>
+        </ion-row>
+      </div>
+
+      <!-- <div *ngIf="ischecksearch==true">
+        <ion-list *ngIf="ischecklist==true">
+
+          <ion-item (click)="itemclick(item)" *ngFor="let item of items">
+            <ion-row>
+              <ion-col text-left>
+                <p *ngIf="item.HotelName">
+                  <img src="./assets/ic_facility/ic_hotel.svg">
+                </p>
+                <p *ngIf="item.RegionName">
+                  <img src="./assets/ic_facility/Group.svg"> 
+                </p>
+              </ion-col>
+              <ion-col *ngIf="item.RegionName" text-right>
+                <p style="color: #26bed6">
+                  {{item.TotalHotels}} khách sạn
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        <ion-list *ngIf="ischecklist==false&&recent">
+          <ion-list-header>
+            Recent
+          </ion-list-header>
+          <ion-item *ngFor="let msg of recent">
+            <ion-row (click)="next1(msg)">
+              <ion-col text-left>
+                <p *ngIf="msg.HotelName">
+                  <img src="./assets/ic_facility/Group.svg">
+                </p>
+                <p *ngIf="msg.regionName">
+                  <img src="./assets/ic_facility/Group.svg">
+                </p>
+              </ion-col>
+              <ion-col *ngIf="msg.RegionName" text-right>
+                <p style="color: #26bed6">
+                  {{msg.TotalHotels}} khách sạn
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        <hr *ngIf="ischecklist==false" style="margin-top: -15px">
+        <ion-list *ngIf="ischecklist==false">
+          <ion-list-header>
+            Popular
+          </ion-list-header>
+          <ion-item *ngFor="let msg of json; let i = index">
+            <ion-row (click)="next(msg,i)">
+              <ion-col text-left>
+                <p>
+                  <img src="./assets/ic_facility/Group.svg">
+                </p>
+              </ion-col>
+              <ion-col text-right>
+                <p style="color: #26bed6">
+                  {{msg.totalHotel}} khách sạn
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+      </div> -->
+    </div>
+  </div>
+  <div
+    *ngIf="ischeck == true && ischeckks == true && slideData1.length > 0"
+    style="background-color: #ffffff"
+    class="cls-content-slide"
+  >
+    <ion-row
+      *ngIf="blogtrips.length > 0"
+      style="margin-left: -5px;padding-top:16px"
+      class="p-left-16"
+    >
+      <ion-col size="8" style="padding-bottom: 0">
+        <ion-label class="text-title2">
+          Vi Vu {{ regionnamesuggest }}
+        </ion-label>
+      </ion-col>
+      <ion-col size="4" style="padding: 5px 0 0 0">
+        <div style="margin-top: 5px;text-align: right">
+          <ion-label (click)="seemoreblog(1)" style="color: #26bed6">
+            Xem thêm
+          </ion-label>
+          <img src="./assets/imgs/vector.svg" />
+        </div>
+      </ion-col>
+    </ion-row>
+    <div *ngIf="blogtrips.length > 0" class="sub-title p-left-16">
+      <ion-label class="text-subtitle">
+        Tự do khám phá. Tận hưởng trọn vẹn
+      </ion-label>
+    </div>
+    <div
+      *ngIf="blogtrips.length > 0"
+      class="innerdeals1 slideblogtrips-scroll"
+      style="overflow-x: scroll; margin-left:0"
+      padding
+      (scroll)="onScrollBlogTrip($event)"
+    >
+      <div
+        style="padding-left: 8px;position: relative;"
+        class="cls-deal cls-blogtrip"
+        *ngFor="let slide of blogtrips"
+      >
+        <img
+          (click)="clickitemblogtrips(slide)"
+          class="slide2 img"
+          *ngIf="slide.avatar"
+          [src]="slide.avatar"
+        />
+        <img
+          (click)="clickitemblogtrips(slide)"
+          class="slide2 img"
+          *ngIf="!slide.avatar"
+          src="https://cdn1.ivivu.com/iVivu/2018/02/07/15/noimage.png"
+        />
+        <div (click)="clickitemblogtrips(slide)" class="float-info">
+          <h2 class="text-title-blog">
+            {{ slide.title }}
+          </h2>
+        </div>
+        <div class="float-infoicon" style="top:6px" (click)="share(slide.url)">
+          <img
+            style="padding-top:10px;width: 18px"
+            src="./assets/imgs/ic_share.svg"
+          />
+        </div>
+        <div class="float-infoiconheart" style="top:16px">
+          <img
+            class="img-heart"
+            *ngIf="!slide.Like"
+            (click)="likeItemblogtrips(slide.id)"
+            src="./assets/imgs/heart-empty.svg"
+            style="width:18px;height:18px"
+          />
+          <!-- <ion-icon *ngIf="slide.Like" class="img-heart" style="width:20px;height:20px;margin-top: 10px"
+          (click)="unlikeItemblog(slide.id)" name="heart" color="danger"></ion-icon> -->
+          <img
+            class="img-heart"
+            style="width:18px;height:18px"
+            *ngIf="slide.Like"
+            (click)="unlikeItemblogtrips(slide.id)"
+            src="./assets/imgs/heart-red.svg"
+          />
+        </div>
+        <div class="grad-icon-blog" (click)="clickitemblogtrips(slide)"></div>
+        <div class="grad-blog" (click)="clickitemblogtrips(slide)"></div>
+      </div>
+      <div *ngIf="showloadmoreblogtrip" class="div-loadmore">
+        <ion-spinner
+          name="bubbles"
+          class="spinner-bubbles hydrated"
+        ></ion-spinner>
+      </div>
+    </div>
+    <div class="title-padding p-left-16">
+      <ion-label class="text-title2">
+        Ưu đãi tốt nhất hôm nay
+      </ion-label>
+      <div style="margin-top: 5px;text-align: right;float: right;">
+        <ion-label (click)="seemoredeal()" style="color: #26bed6">
+          Xem thêm
+        </ion-label>
+        <img src="./assets/imgs/vector.svg" />
+      </div>
+    </div>
+    <div class="sub-title p-left-16">
+      <ion-label class="text-subtitle">
+        Nhanh tay đặt ngay. Để mai sẽ lỡ
+      </ion-label>
+    </div>
+    <div
+      class="innerdeals1 slide2-scroll"
+      style="overflow-x: scroll;overflow-y: hidden; margin-left: -4px;"
+      padding
+      (scroll)="onScroll($event)"
+    >
+      <div
+        (click)="itemclickht(slide)"
+        class="cls-deal"
+        style="padding-left: 8px;position: relative"
+        *ngFor="let slide of slideData1"
+      >
+        <img class="slide2 img" [src]="slide.imageUrl" />
+        <div class="float-promo">
+          <p class="float-promo-description" *ngIf="slide.priceshow">
+            {{ slide.description }} | {{ slide.priceshow }} triệu/khách
+          </p>
+
+          <p class="float-promo-description" *ngIf="!slide.priceshow">
+            {{ slide.description }}
+          </p>
+        </div>
+        <div class="float-info">
+          <h2 class="hotel-name" style="margin:0">
+            {{ slide.name }}
+          </h2>
+          <p style="margin: 0">
+            <img *ngIf="slide.rating != 0" src="{{ slide.rating }}" />
+          </p>
+        </div>
+        <div class="grad1"></div>
+        <!-- <img-loader class="slide2 img" [src]="slide.imageUrl" useImg></img-loader> -->
+        <!-- <p class="text-title1" [innerHTML]="slide.regionName"></p> -->
+
+        <!-- <h2 class="hotel-name">
+          {{slide.name}}
+        </h2>
+        <p style="margin-top: -10px">
+          <img *ngIf="slide.rating!=0" src={{slide.rating}}>
+          
+        </p> -->
+        <!-- <p text-wrap style="font-size: 12px;font-weight: 300;text-align: left;margin-top: -10px">
+          {{slide.description}}
+        </p>
+        <p text-wrap class="text-price">
+          {{slide.minPrice}} đ
+        </p> -->
+      </div>
+      <div *ngIf="showloadmore" class="div-loadmore">
+        <ion-spinner
+          name="bubbles"
+          class="spinner-bubbles hydrated"
+        ></ion-spinner>
+      </div>
+    </div>
+    <div class="title-padding  p-left-16">
+      <ion-label class="text-title2">
+        Du lịch ngay! Vì bạn xứng đáng
+      </ion-label>
+    </div>
+    <div class="sub-title p-left-16">
+      <ion-label class="text-subtitle">
+        Làm việc cả năm. Đến lúc tưởng thưởng
+      </ion-label>
+    </div>
+    <div
+      class="inner2 slide3-scroll"
+      style="overflow-x: scroll; margin-left: 0"
+      padding
+    >
+      <div
+        class="cls-mood"
+        style="padding-left: 8px;position: relative;"
+        *ngFor="let slide of slideMood"
+        (click)="itemSelectedmood(slide)"
+      >
+        <img class="slide3 img" [src]="slide.avatar" />
+        <!-- <img-loader class="slide2 img" [src]="slide.bannerUrl" useImg></img-loader> -->
+        <div class="float-info">
+          <p class="text-titledes" [innerHTML]="slide.title"></p>
+          <p class="cls-subtitle">
+            {{ slide.shortDescription }} - {{ slide.totalHotel }} Khách sạn
+          </p>
+        </div>
+        <div class="grad2"></div>
+      </div>
+    </div>
+    <div class="title-padding-1 p-left-16">
+      <ion-label class="text-title2">
+        Điểm đến yêu thích trong nước
+      </ion-label>
+    </div>
+    <div class="sub-title p-left-16">
+      <ion-label class="text-subtitle">
+        Lên rừng xuống biển. Trọn vẹn Việt Nam
+      </ion-label>
+    </div>
+    <!-- <div class="inner2 slide4-scroll" style="overflow-x: auto" padding>
+      <div class="cls-destination" style="padding-left: 8px;" *ngFor="let slide of regionsend"
+        (click)="itemclickregion(slide)">
+        <img class="slide3 img" [src]="slide.imageUrl" />
+        <p class="text-titledes" [innerHTML]="slide.name"></p>
+        <p style="font-size: 12px;font-weight: 300;text-align: left;margin-top: -10px">
+          {{slide.totalHotel}} khách sạn
+        </p>
+      </div>
+    </div> -->
+    <div
+      class="cls-destination p-left-16"
+      style="padding-top:8px;padding-bottom: 16px;"
+      *ngIf="regionsend.length > 0"
+    >
+      <ion-grid style="padding:0">
+        <!-- row 1 -->
+        <ion-row>
+          <ion-col size="8" class="nopadding">
+            <!-- item 1 -->
+            <ion-row
+              style="padding-bottom:8px;padding-right:8px"
+              (click)="itemclickregion(regionsend[0])"
+            >
+              <div class=" div-info-cover-auto-width">
+                <img class="img-region" [src]="regionsend[0].image" />
+                <div class="float-info-region">
+                  <p class="text-titledes" [innerHTML]="regionsend[0].name"></p>
+                </div>
+                <div class="grad3"></div>
+              </div>
+            </ion-row>
+
+            <ion-row style="padding-right:8px">
+              <!-- item 2 -->
+              <ion-col
+                size="6"
+                class="nopadding"
+                style="padding-right:8px"
+                (click)="itemclickregion(regionsend[2])"
+              >
+                <div class="div-info-cover-auto-width">
+                  <img class="img-region" [src]="regionsend[2].image" />
+                  <div class="float-info-region">
+                    <p
+                      class="text-titledes"
+                      [innerHTML]="regionsend[2].name"
+                    ></p>
+                  </div>
+                  <div class="grad3"></div>
+                </div>
+              </ion-col>
+              <!-- item 3 -->
+              <ion-col
+                size="6"
+                class="nopadding"
+                (click)="itemclickregion(regionsend[3])"
+              >
+                <div class="div-info-cover-auto-width">
+                  <img class="img-region" [src]="regionsend[3].image" />
+                  <div class="float-info-region">
+                    <p
+                      class="text-titledes"
+                      [innerHTML]="regionsend[3].name"
+                    ></p>
+                  </div>
+                  <div class="grad3"></div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <!-- item 4 -->
+          <ion-col
+            size="4"
+            class="nopadding"
+            (click)="itemclickregion(regionsend[1])"
+          >
+            <div class="div-info-cover-auto-height">
+              <img class="img-region" [src]="regionsend[1].image" />
+              <div class="float-info-region">
+                <p class="text-titledes" [innerHTML]="regionsend[1].name"></p>
+              </div>
+              <div class="grad3"></div>
+            </div>
+          </ion-col>
+        </ion-row>
+        <!-- row 2 -->
+        <ion-row style="padding-top: 8px;">
+          <!-- item 5 -->
+          <ion-col
+            size="3.59"
+            class="nopadding"
+            (click)="itemclickregion(regionsend[5])"
+          >
+            <div class="div-info-cover-auto-height">
+              <img class="img-region" [src]="regionsend[5].image" />
+              <div class="float-info-region">
+                <p class="text-titledes" [innerHTML]="regionsend[5].name"></p>
+              </div>
+              <div class="grad3"></div>
+            </div>
+          </ion-col>
+          <ion-col class="nopadding" style="padding-left:8px">
+            <!-- item 6 -->
+            <ion-row
+              style="padding-bottom:8px;"
+              (click)="itemclickregion(regionsend[6])"
+            >
+              <div class=" div-info-cover-auto-width">
+                <img class="img-region" [src]="regionsend[6].image" />
+                <div class="float-info-region">
+                  <p class="text-titledes" [innerHTML]="regionsend[6].name"></p>
+                </div>
+                <div class="grad3"></div>
+              </div>
+            </ion-row>
+
+            <ion-row>
+              <!-- item 7 -->
+              <ion-col
+                size="6"
+                class="nopadding"
+                style="padding-right:8px"
+                (click)="itemclickregion(regionsend[4])"
+              >
+                <div class="div-info-cover-auto-width">
+                  <img class="img-region" [src]="regionsend[4].image" />
+                  <div class="float-info-region">
+                    <p
+                      class="text-titledes"
+                      [innerHTML]="regionsend[4].name"
+                    ></p>
+                  </div>
+                  <div class="grad3"></div>
+                </div>
+              </ion-col>
+              <!-- item 8 -->
+              <ion-col
+                size="6"
+                class="nopadding"
+                (click)="itemclickregion(regionsend[7])"
+              >
+                <div class="div-info-cover-auto-width">
+                  <img class="img-region" [src]="regionsend[7].image" />
+                  <div class="float-info-region">
+                    <p
+                      class="text-titledes"
+                      [innerHTML]="regionsend[7].name"
+                    ></p>
+                  </div>
+                  <div class="grad3"></div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <!-- Điểm đến nước ngoài -->
+    <div class="title-padding-1 p-left-16">
+      <ion-label class="text-title2">
+        Điểm đến yêu thích nước ngoài
+      </ion-label>
+    </div>
+    <div class="sub-title p-left-16">
+      <ion-label class="text-subtitle">
+        Bao la thế giới. Bốn bể là nhà
+      </ion-label>
+    </div>
+    <div
+      class="cls-destination p-left-16"
+      style="padding-top:8px;padding-bottom: 16px;"
+      *ngIf="regionintersend.length > 0"
+    >
+      <ion-grid style="padding:0">
+        <!-- row 1 -->
+        <ion-row>
+          <!-- col 1 -->
+          <ion-col
+            size="8"
+            style="padding-right:8px"
+            class="nopadding"
+            (click)="itemclickregion(regionintersend[0])"
+          >
+            <div class=" div-info-cover-auto-width">
+              <img class="img-region" [src]="regionintersend[0].image" />
+              <div class="float-info-region">
+                <p
+                  class="text-titledes"
+                  [innerHTML]="regionintersend[0].name"
+                ></p>
+              </div>
+              <div class="grad3"></div>
+            </div>
+          </ion-col>
+          <!-- col 2 -->
+          <ion-col
+            size="4"
+            class="nopadding"
+            (click)="itemclickregion(regionintersend[1])"
+          >
+            <div class=" div-info-cover-auto-width">
+              <img class="img-region" [src]="regionintersend[1].image" />
+              <div class="float-info-region">
+                <p
+                  class="text-titledes"
+                  [innerHTML]="regionintersend[1].name"
+                ></p>
+              </div>
+              <div class="grad3"></div></div
+          ></ion-col>
+        </ion-row>
+        <!-- row 2 -->
+        <ion-row style="padding-top:8px">
+          <!-- col 1 -->
+          <ion-col
+            size="4"
+            style="padding-right:8px"
+            class="nopadding"
+            (click)="itemclickregion(regionintersend[2])"
+          >
+            <div class=" div-info-cover-auto-width">
+              <img class="img-region" [src]="regionintersend[2].image" />
+              <div class="float-info-region">
+                <p
+                  class="text-titledes"
+                  [innerHTML]="regionintersend[2].name"
+                ></p>
+              </div>
+              <div class="grad3"></div>
+            </div>
+          </ion-col>
+          <!-- col 2 -->
+          <ion-col
+            size="4"
+            style="padding-right:8px"
+            class="nopadding"
+            (click)="itemclickregion(regionintersend[3])"
+          >
+            <div class=" div-info-cover-auto-width">
+              <img class="img-region" [src]="regionintersend[3].image" />
+              <div class="float-info-region">
+                <p
+                  class="text-titledes"
+                  [innerHTML]="regionintersend[3].name"
+                ></p>
+              </div>
+              <div class="grad3"></div>
+            </div>
+          </ion-col>
+          <!-- col 3 -->
+          <ion-col
+            size="4"
+            class="nopadding"
+            (click)="itemclickregion(regionintersend[4])"
+          >
+            <div class=" div-info-cover-auto-width">
+              <img class="img-region" [src]="regionintersend[4].image" />
+              <div class="float-info-region">
+                <p
+                  class="text-titledes"
+                  [innerHTML]="regionintersend[4].name"
+                ></p>
+              </div>
+              <div class="grad3"></div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <!-- Trải nghiệm phải thử -->
+    <div class="title-padding-1 p-left-16">
+      <ion-label class="text-title2">
+        Trải nghiệm phải thử
+      </ion-label>
+    </div>
+    <div class="sub-title p-left-16">
+      <ion-label class="text-subtitle">
+        Thổ địa du lịch. Luôn cùng đồng hành
+      </ion-label>
+    </div>
+    <div class="cls-experiencemusttry p-left-16">
+      <ion-grid style="padding:0">
+        <!-- row 1 -->
+        <ion-row class="m-bottom-8">
+          <!-- Ăn gì -->
+          <ion-col
+            class="nopadding p-right-8"
+            (click)="openExperienceMusttry(3)"
+          >
+            <img class="img-region" src="../../assets/img_musttry/mt-2.jpg" />
+            <div class="img-float-experience">
+              <img
+                class="img-musttry"
+                src="../../assets/img_musttry/icon_food_fill.svg"
+              />
+            </div>
+
+            <div class="float-info-experience">
+              <p class="text-titleexp">Ăn gì</p>
+            </div>
+            <div class="grad-experience"></div>
+          </ion-col>
+          <!-- Xem gì -->
+          <ion-col
+            class="nopadding p-right-8"
+            (click)="openExperienceMusttry(6)"
+          >
+            <img class="img-region" src="../../assets/img_musttry/mt-6.jpg" />
+            <div class="img-float-experience">
+              <img
+                class="img-musttry"
+                src="../../assets/img_musttry/icon_eye_fill.svg"
+              />
+            </div>
+            <div class="float-info-experience">
+              <p class="text-titleexp">Xem gì</p>
+            </div>
+            <div class="grad-experience"></div>
+          </ion-col>
+          <!-- Chơi gì -->
+          <ion-col class="nopadding " (click)="openExperienceMusttry(7)">
+            <img class="img-region" src="../../assets/img_musttry/mt.jpg" />
+            <div class="img-float-experience">
+              <img
+                class="img-musttry"
+                src="../../assets/img_musttry/icon_celebrate_fill.svg"
+              />
+            </div>
+            <div class="float-info-experience">
+              <p class="text-titleexp">Chơi gì</p>
+            </div>
+            <div class="grad-experience"></div>
+          </ion-col>
+        </ion-row>
+
+        <!-- row 2 -->
+        <ion-row>
+          <!-- Ở đâu -->
+          <ion-col
+            class="nopadding p-right-8"
+            (click)="openExperienceMusttry(4)"
+          >
+            <img class="img-region" src="../../assets/img_musttry/mt-7.jpg" />
+            <div class="img-float-experience">
+              <img
+                class="img-musttry"
+                src="../../assets/img_musttry/icon_home_fill.svg"
+              />
+            </div>
+            <div class="float-info-experience">
+              <p class="text-titleexp">Ở đâu</p>
+            </div>
+            <div class="grad-experience"></div>
+          </ion-col>
+          <!-- Sống ảo -->
+          <ion-col
+            class="nopadding p-right-8"
+            (click)="openExperienceMusttry(9)"
+          >
+            <img class="img-region" src="../../assets/img_musttry/mt-1.jpg" />
+            <div class="img-float-experience">
+              <img
+                class="img-musttry"
+                src="../../assets/img_musttry/icon_camera_fill.svg"
+              />
+            </div>
+            <div class="float-info-experience">
+              <p class="text-titleexp">Sống ảo</p>
+            </div>
+            <div class="grad-experience"></div>
+          </ion-col>
+          <!-- Uống gì -->
+          <ion-col class="nopadding" (click)="openExperienceMusttry(22)">
+            <img class="img-region" src="../../assets/img_musttry/mt-3.jpg" />
+            <div class="img-float-experience div-img-coffee">
+              <img
+                class="img-musttry img-coffee"
+                src="../../assets/img_musttry/coffee.svg"
+              />
+            </div>
+            <div class="float-info-experience">
+              <p class="text-titleexp">Uống gì</p>
+            </div>
+            <!-- <div class="grad-experience"></div> -->
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="title-padding-1 p-left-16" style="position: relative;">
+      <ion-label class="text-title2">
+        Cẩm nang du lịch
+      </ion-label>
+      <div style="margin-top: 5px;text-align: right;float: right;">
+        <ion-label (click)="seemoreblog(2)" style="color: #26bed6">
+          Xem thêm
+        </ion-label>
+        <img src="./assets/imgs/vector.svg" />
+      </div>
+    </div>
+    <div class="sub-title p-left-16">
+      <ion-label class="text-subtitle">
+        Cập nhật thông tin. Chuyến đi tuyệt vời
+      </ion-label>
+    </div>
+    <div
+      class="innerdeals1 slide5-scroll"
+      style="overflow-x: scroll; margin-left: 0px"
+      padding
+      (scroll)="onScrollBlog($event)"
+    >
+      <div
+        style="padding-left: 8px;position: relative;"
+        class="cls-deal cls-blog"
+        *ngFor="let slide of blog"
+      >
+        <img
+          (click)="clickitemblog(slide)"
+          class="slide2 img"
+          *ngIf="slide.Avatar"
+          [src]="slide.Avatar"
+        />
+        <img
+          (click)="clickitemblog(slide)"
+          class="slide2 img"
+          *ngIf="!slide.Avatar"
+          src="https://cdn1.ivivu.com/iVivu/2018/02/07/15/noimage.png"
+        />
+        <div (click)="clickitemblog(slide)" class="float-info">
+          <h2 class="text-title-blog">
+            {{ slide.Title }}
+          </h2>
+        </div>
+        <div class="float-infoicon" style="top:4px" (click)="share(slide.Url)">
+          <img
+            style="padding-top:10px;width: 18px"
+            src="./assets/imgs/ic_share.svg"
+          />
+        </div>
+        <div class="float-infoiconheart" style="top:4px">
+          <img
+            *ngIf="!slide.Like"
+            class="img-heart"
+            (click)="likeItemblog(slide.Id)"
+            src="./assets/imgs/heart-empty.svg"
+            style="width:18px;height:18px;margin-top: 10px"
+          />
+          <img
+            *ngIf="slide.Like"
+            class="img-heart"
+            (click)="unlikeItemblog(slide.Id)"
+            src="./assets/imgs/heart-red.svg"
+            style="width:18px;height:18px;margin-top: 10px"
+          />
+        </div>
+        <div class="grad-icon-blog" (click)="clickitemblog(slide)"></div>
+        <div class="grad-blog" (click)="clickitemblog(slide)"></div>
+      </div>
+      <div *ngIf="showloadmoreblog" class="div-loadmore">
+        <ion-spinner
+          name="bubbles"
+          class="spinner-bubbles hydrated"
+        ></ion-spinner>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="slideData1.length == 0 && isConnected"
+    style="background-color:#ffffff"
+  >
+    <div *ngIf="slideData1.length == 0" padding>
+      <ion-row>
+        <ion-skeleton-text
+          animated
+          style="width:30%;margin: 0;height: 16px;"
+        ></ion-skeleton-text>
+      </ion-row>
+
+      <ion-row style="margin-top:16px">
+        <ion-col style="padding: 0">
+          <ion-skeleton-text
+            animated
+            style="width:100%;height:118px;border-radius: 6px;margin:0"
+          ></ion-skeleton-text>
+        </ion-col>
+        <ion-col style="padding: 0;margin-left:8px">
+          <ion-skeleton-text
+            animated
+            style="width:100%;height:118px;border-radius: 6px;margin:0"
+          ></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col style="padding: 0">
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:35%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:85%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:60%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+        </ion-col>
+        <ion-col style="padding: 0; margin-left: 8px">
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:35%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:85%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:60%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="4" style="padding: 0">
+          <ion-skeleton-text
+            animated
+            style="width:100%;margin: 0;height: 16px; margin-top: 32px"
+          ></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top:16px">
+        <ion-col size="4" style="padding: 0">
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:100%;height:98px;border-radius: 6px;margin:0"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:75%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:30%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+        </ion-col>
+        <ion-col size="4" style="padding: 0; margin-left: 8px">
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:100%;height:98px;border-radius: 6px;margin:0"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:75%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:30%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 16px">
+        <ion-col size="4" style="padding: 0">
+          <ion-skeleton-text
+            animated
+            style="width:100%;margin: 0;height: 16px"
+          ></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top:16px">
+        <ion-col size="4" style="padding: 0">
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:100%;height:98px;border-radius: 6px;margin:0"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:75%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+        </ion-col>
+        <ion-col size="4" style="padding: 0; margin-left: 8px">
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:100%;height:98px;border-radius: 6px;margin:0"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:75%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 32px">
+        <ion-skeleton-text
+          animated
+          style="width:20%;margin: 0;height: 16px"
+        ></ion-skeleton-text>
+      </ion-row>
+      <ion-row style="margin-top:16px">
+        <ion-col style="padding: 0">
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:100%;height:118px;border-radius: 6px;margin:0"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:100%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:30%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+        </ion-col>
+        <ion-col style="padding: 0; margin-left: 8px">
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:100%;height:118px;border-radius: 6px;margin:0"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:30%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+          <ion-row>
+            <ion-skeleton-text
+              animated
+              style="width:85%;margin: 0;height: 16px;margin-top: 8px"
+            ></ion-skeleton-text>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <div
+    *ngIf="!isConnected"
+    style="background-color: #ffffff; height: 400px;padding: 16px;"
+  >
+    <div class="img-lostconnection">
+      <img class="img-empty" src="./assets/empty/trip_empty.svg" />
+    </div>
+    <div class="text-lostconnection">
+      <label
+        >Vui lòng kết nối mạng để sử dụng các tính năng của ứng dụng.</label
+      >
+    </div>
+  </div>
+</ion-content>

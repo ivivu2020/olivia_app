@@ -1,0 +1,12 @@
+{
+	"pods": {
+		"GoogleMaps": {
+			"type": "podspec",
+			"src": "GoogleMaps",
+			"spec": "~> 2.7.0"
+		}
+	},
+	"sources": {},
+	"iosMinVersion": "7.0",
+	"useFrameworks": false
+}

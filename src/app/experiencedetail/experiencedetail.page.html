@@ -1,0 +1,130 @@
+<ion-content class="content-experiencedetail" #scrollArea>
+  <div >
+      <div class="experiencedetail-page">
+          <ion-slides (ionSlideDidChange)="slidechange()" #mySlider>
+            <ion-slide *ngFor="let slide of slideData" class="slide-ep-detail">
+              <img *ngIf="slide.LinkImage && slide.LinkImage.length >0" style="width: 100%; height: 224px;object-fit: cover" [src]="slide.LinkImage" />
+              <img style="width: 100%; height: 224px;object-fit: cover" src="https://cdn1.ivivu.com/iVivu/2018/02/07/15/noimage-360x224.png"/>
+              <div id="grad1">
+              </div>
+              <ion-badge style="margin-bottom: 10px" class="badgescss" *ngIf="coutslide.length >1">{{coutslide}}/{{lengthslide}}</ion-badge>
+            </ion-slide>
+          </ion-slides>
+          <div class="div-go-back" (click)="goback()">
+              <img class="img-back" src="./assets/imgs/ios-arrow-round-back-white.svg" (click)="goback()">
+              <div class="div-img-background div-goback-background"></div>
+           </div>
+
+           <div class="img-heart" *ngIf="item && !item.liked"  (click)="likePlace(item,0)">
+            <div class="div-img-background div-heart-background"></div>
+              <img class="image-heart" src="./assets/imgs/ic_heart_w.svg">
+              <div class="div-like-count">{{item.totalLike}}</div>
+              
+            </div>
+            <div class="img-heart" *ngIf="item && item.liked" (click)="unlikePlace(item,0)">
+                <div class="div-img-background div-heart-background"></div>
+                <img class="image-heart" src="./assets/imgs/ic_heart_red.svg">
+                <div class="div-like-count">{{item.totalLike}}</div>
+                
+            </div>
+            <div class="img-share" (click)="sharePlace()">
+              <div class="div-img-background div-share-background"></div>
+              <img class="image-share" src="./assets/imgs/ic_share_w.svg">
+                
+            </div>
+            <div class="grad"></div>
+         
+        </div>
+       <div class="experiencedetail-info" *ngIf="item">
+         <div class="name-padding">
+            <ion-label class="text-experiencedetail-info text-name">{{ item.name }}</ion-label>
+         </div>
+         <!-- intro -->
+        <div class="div-text-intro" *ngIf="item.introText">
+          <ion-label class="text-intro">{{ item.introText }}</ion-label>
+        </div>
+
+          <!-- highlight -->
+          <div class="p-16">
+            <p class="text-experiencedetail-info m-bottom-13">{{item.hightLight}} <span class="text-blog" (click)="clickBlogReference(item)">Chi tiết</span></p>
+          </div>
+
+         <!-- Map -->
+         <div class="div-map" id="mapid" #mapid *ngIf="item">
+            <iframe width="100%" height="80" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+            [src]="linkGoogleMap">
+          </iframe>
+        </div>
+
+        <div>
+          <div><img class="img-absolute img-location" src="./assets/iocnsearch/ic_location.svg"></div>
+          <div class="p-16"><p class="text-experiencedetail-info text-address p-left-24 m-bottom-6">{{ item.address }}</p></div>
+        </div>
+
+        <div class="div-over">
+          <div *ngIf="item.workingHours && item.workingHours.length >0">
+            <div class="img-experiencedetail-info img-absolute"><img class="img-clock" src="./assets/img_musttry/icon_clock.svg"></div>
+            <div><p class="text-experiencedetail-info p-left-40 m-bottom-6">
+              <!-- {{item.workingHours[0].name}} | {{item.workingHours[0].timeFrom}} → {{item.workingHours[0].timeTo}} -->
+              {{item.workingHoursDisplay}}
+            </p></div>
+          </div>
+
+          <div *ngIf="priceFrom && priceTo">
+            <div class="img-experiencedetail-info"><img class="img-money img-padding-10" src="./assets/imgs/ic_money_b.svg"></div>
+            <div><p class="text-experiencedetail-info p-left-40 m-bottom-6">{{priceFrom}} đồng - {{priceTo}} đồng</p></div>
+          </div>
+         
+          <!-- like -->
+          <!-- <div *ngIf="item.totalLike && item.totalLike >0" class="p-16">
+            <p class="text-like  m-bottom-20">{{item.totalLike}} lượt thích</p>
+          </div> -->
+          <!-- see blog -->
+          <!-- <div class="p-16" (click)="clickBlogReference(item)">
+            <ion-label class="text-blog">Xem bài blog chi tiết</ion-label>
+          </div> -->
+
+          <div class="div-split-panel"></div>
+
+          <div *ngIf="listDistanceNearBy && listDistanceNearBy.length >0" class="div-distancenearby">
+            <div class="text-title-nearby">Trải nghiệm lân cận</div>
+              <div *ngFor="let slide of listDistanceNearBy; let idx=index "  (click)="itemListSearchClick(slide)">
+                <div [ngClass]="idx > 0 ? ( idx == listDistanceNearBy.length -1 ? ' p-tb-16' : 'border-bottom p-top-16') : 'border-bottom'">
+                  <img class="img-list-item" *ngIf="slide.avatar" [src]="slide.avatar" />
+                  <img class="img-list-item" *ngIf="!slide.avatar" src="https://cdn1.ivivu.com/iVivu/2018/02/07/15/noimage.png" />
+
+                  <div class="info-search-item">
+                    <!-- Tên -->
+                    <div class="name-search-item">{{slide.name}}</div>
+                     <!-- highlight -->
+                    <div class="text-hightLight m-8">{{slide.introText}}</div>
+                    <!-- km & address -->
+                    <div class="div-likeandshare">
+                      <div *ngIf="slide.totalDistance > 0"><span class="text-regular">{{ slide.totalDistance }} km | {{ slide.shortAdress }}</span></div>
+                      <div *ngIf="slide.totalDistance == 0"><span class="text-regular">{{ slide.shortAdress }}</span></div>
+                      <div *ngIf="slide.workingHoursDisplay" class="text-hidden">
+                        <span class="text-regular">{{ slide.workingHoursDisplay }}</span>
+                      </div>
+                    </div>
+                    <!-- <div class="text-like-search-item" *ngIf="slide.totalLike > 0 && slide.totalDistanceNearBy == 0"  (click)="itemListSearchClick(slide)">{{slide.totalLike}}</div>
+                    <div class="text-like-search-item text-distance" *ngIf="slide.totalLike == 0 && slide.totalDistanceNearBy >0"  (click)="itemListSearchClick(slide)">{{slide.totalDistanceNearBy}} km</div>
+                    <div class="div-like-search-item" *ngIf="slide.totalLike > 0 && slide.totalDistanceNearBy >0"  (click)="itemListSearchClick(slide)">
+                      <span>{{slide.totalLike}} lượt thích</span>
+                      <span class="text-regular"> | {{slide.totalDistanceNearBy}} km</span>
+                    </div>
+                   
+                    <div class="div-likeandshare p-top-8">
+                        <img *ngIf="!slide.liked" class="img-item-search-heart" src="../../assets/imgs/ic_heart_b.svg" (click)="likePlace(slide,1)">
+                        <img *ngIf="slide.liked" class="img-item-search-heart" src="../../assets/imgs/ic_heart_red.svg" (click)="unlikePlace(slide,1)">
+                        <img class="img-item-search-share p-left-32" src="../../assets/imgs/ic_share_b.svg" (click)="sharePlace(slide)">
+                    </div> -->
+                  
+                  </div>
+                </div>
+              </div>
+          </div>
+          
+        </div>
+       </div>
+  </div>
+</ion-content>

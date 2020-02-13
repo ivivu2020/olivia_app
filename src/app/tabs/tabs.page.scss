@@ -1,0 +1,295 @@
+.tabbar{
+    background: #f8f8f8;
+    padding: 0;
+    border: none;
+
+    -moz-box-shadow:    2px 4px 5px 3px #dedede;
+    -webkit-box-shadow: 2px 4px 5px 3px #dedede;
+    box-shadow:         2px 4px 5px 3px #dedede;
+  }
+
+  ::ng-deep{
+    .action-sheets-notification .action-sheet-group.sc-ion-action-sheet-ios{
+      background-color: #ffffff;
+      box-shadow: 1px 1px 8px 0px #828282;
+      border-radius: 10px;
+    }
+    .action-sheets-notification .action-sheet-container.sc-ion-action-sheet-ios{
+      justify-content: flex-start;
+      margin-top: calc(env(safe-area-inset-top)*2 - 14px );
+      -webkit-padding-start: 8px;
+      padding-inline-start: 8px;
+      -webkit-padding-end: 8px;
+      padding-inline-end: 8px;
+    }
+    
+    .action-sheets-notification .action-sheet-title.sc-ion-action-sheet-ios{
+      background-color: #ffffff;
+      background-position: unset;
+      text-align: left;
+      font-weight: bold;
+      color: #000000;
+      padding-top: 10px;
+      padding-bottom: 0px;
+      padding-left: 44px;
+      font-size: 14px;
+    }
+    .action-sheets-notification .action-sheet-button-inner.sc-ion-action-sheet-ios{
+      color: #000000;
+      font-size: 14px;
+    }
+    .ic_bus2 .action-sheet-group.sc-ion-action-sheet-ios::before{
+      float: left;
+      content: url('../../assets/imgs/ic_bus2.svg');
+      padding-top: 0px;
+      margin-left: 10px;
+      margin-right: 10px;
+      position: absolute;
+      left: 8px;
+      margin-top: 13px ;
+    }
+    .ic_home .action-sheet-group.sc-ion-action-sheet-ios::before{
+      float: left;
+      content: url('../../assets/imgs/ic_home.svg');
+      padding-top: 0px;
+      margin-left: 10px;
+      margin-right: 10px;
+      position: absolute;
+      left: 8px;
+      margin-top: 13px ;
+      //top:13px;
+    }
+    .ic_paper .action-sheet-group.sc-ion-action-sheet-ios::before{
+      float: left;
+      content: url('../../assets/imgs/ic_paper.svg');
+      padding-top: 0px;
+      margin-left: 10px;
+      margin-right: 10px;
+      position: absolute;
+      left: 8px;
+      margin-top: 13px ;
+    }
+    .ic_message .action-sheet-group.sc-ion-action-sheet-ios::before{
+      float: left;
+      content: url('../../assets/imgs/ic_message.svg');
+      padding-top: 0px;
+      margin-left: 10px;
+      margin-right: 10px;
+      position: absolute;
+      left: 8px;
+      margin-top: 13px ;
+    }
+    .action-sheets-notification .action-sheet-group.sc-ion-action-sheet-ios{
+      background-color: #ffffff;
+      box-shadow: 1px 1px 8px 0px #828282;
+      border-radius:10px !important;
+    }
+  
+    .action-sheets-notification .action-sheet-button.sc-ion-action-sheet-ios{
+      padding-inline-start: 44px;
+      text-align: left;
+      padding-top: 0px;
+      padding-bottom: 13px;
+      font-size: 14px;
+      letter-spacing: -0.4px;
+      line-height: 15px;
+      -webkit-padding-end: 10px;
+      padding-inline-end: 10px;
+      height: auto;
+      min-height:60px;
+      --background-activated:#fff;
+      --background-selected:#fff;
+      border-bottom:none;
+      margin: 0;
+            width: 100%;
+    }
+  
+    .fixheight-44 .action-sheet-button.sc-ion-action-sheet-ios{
+      padding-inline-start: 44px;
+      text-align: left;
+      padding-top: 0px;
+      padding-bottom: 13px;
+      font-size: 14px;
+      letter-spacing: -0.4px;
+      line-height: 15px;
+      -webkit-padding-end: 10px;
+      padding-inline-end: 10px;
+      height: auto;
+      min-height:44px;
+      --background-activated:#fff;
+      --background-selected:#fff;
+    border-bottom:none;
+    }
+  
+    .fixheight-80 .action-sheet-button.sc-ion-action-sheet-ios{
+      padding-inline-start: 44px;
+      text-align: left;
+      padding-top: 0px;
+      padding-bottom: 13px;
+      font-size: 14px;
+      letter-spacing: -0.4px;
+      line-height: 15px;
+      -webkit-padding-end: 10px;
+      padding-inline-end: 10px;
+      height: auto;
+      min-height:80px;
+      --background-activated:#fff;
+    --background-selected:#fff;
+    border-bottom:none;
+    }
+  
+    .fixheight-90 .action-sheet-button.sc-ion-action-sheet-ios{
+      padding-inline-start: 44px;
+      text-align: left;
+      padding-top: 0px;
+      padding-bottom: 13px;
+      font-size: 14px;
+      letter-spacing: -0.4px;
+      line-height: 15px;
+      -webkit-padding-end: 10px;
+      padding-inline-end: 10px;
+      height: auto;
+      min-height:90px;
+      --background-activated:#fff;
+      --background-selected:#fff;
+      border-bottom:none;
+    }
+    .action-sheets-notification .action-sheet-button-inner.sc-ion-action-sheet-ios{
+      font-size:14px;
+      letter-spacing: -0.4px;
+      line-height: 18px;
+      display: initial;
+    }
+  
+    @media (min-width: 250px) and (max-width: 329px) {
+      .action-sheets-notification .action-sheet-button.sc-ion-action-sheet-ios{
+        min-height:72px;
+      }
+  
+      .fixheight-44 .action-sheet-button.sc-ion-action-sheet-ios{
+        min-height:44px;
+      }
+  
+      .fixheight-80 .action-sheet-button.sc-ion-action-sheet-ios{
+        min-height:80px;
+      }
+  
+      .fixheight-90 .action-sheet-button.sc-ion-action-sheet-ios{
+        min-height:102px;
+      }
+    }
+    .ion-page{
+        overflow-y:scroll;
+    }
+
+
+    //////new style
+
+    .ic_bus2 .toast-container::before{
+      float: left;
+      content: url('../../assets/imgs/ic_bus2.svg');
+      padding-top: 0px;
+      margin-left: 10px;
+      margin-right: 10px;
+      position: absolute;
+      left: 8px;
+      margin-top: 13px ;
+    }
+    .ic_home .toast-container::before{
+      float: left;
+      content: url('../../assets/imgs/ic_home.svg');
+      padding-top: 0px;
+      margin-left: 10px;
+      margin-right: 10px;
+      position: absolute;
+      left: 8px;
+      margin-top: 13px ;
+      //top:13px;
+    }
+    .ic_paper .toast-container::before{
+      float: left;
+      content: url('../../assets/imgs/ic_paper.svg');
+      padding-top: 0px;
+      margin-left: 10px;
+      margin-right: 10px;
+      position: absolute;
+      left: 8px;
+      margin-top: 13px ;
+    }
+    .ic_message .toast-container::before{
+      float: left;
+      content: url('../../assets/imgs/ic_message.svg');
+      padding-top: 0px;
+      margin-left: 10px;
+      margin-right: 10px;
+      position: absolute;
+      left: 8px;
+      margin-top: 13px ;
+    }
+}
+
+  ion-tab-button {
+    font-weight: normal;
+    color: rgba(60, 60, 60, 0.7);
+    padding: 0;
+  }
+
+  .tabbar .tab-button[aria-selected=true] {
+    color: #26bed6;
+    padding: 0;
+    
+    
+    }
+    .tab-button a{
+        margin: 0;
+    }
+
+    .tab-button{
+        min-width: 82px;
+        --padding-end: 0;
+        --padding-start: 0;
+    }
+    @media (min-width: 278px) and (max-width: 319px) {
+      .tab-button{
+          --padding-end: 0;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: -0.5px;
+          min-width: 56px;
+      }
+    }
+    @media (min-width: 320px) and (max-width: 339px) {
+        .tab-button{
+            --padding-end: 0;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            min-width: 60px;
+        }
+      }
+      @media (min-width: 340px) and (max-width: 359px) {
+        .tab-button{
+            --padding-end: 0;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            min-width: 64px;
+        }
+      }
+      @media (min-width: 360px) and (max-width: 399px) {
+        .tab-button{
+            --padding-end: 0;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: -0.9px;
+            min-width: 72px;
+        }
+      }
+      .div-split{
+        //padding-right: 4px;
+        width: 0px;
+        height: 100%;
+        background-color: #fff;
+      }
+
+      

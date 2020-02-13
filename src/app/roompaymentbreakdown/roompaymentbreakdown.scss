@@ -1,0 +1,40 @@
+
+    .text-name
+    {
+      font-weight: 500;
+      font-size: 18px;
+      .text-green
+      {
+        color: #26bed6
+      }
+    }
+    .text{
+        font-size: 12px;
+    }
+    .total-price{
+
+      font-size: 14px;
+      font-weight: bold;
+
+    }
+    .total-price1{
+      color: #26bed6;
+      font-size: 24px;
+      font-weight: bold;
+
+    }
+    @media (min-width:287px) and (max-width: 359px) {
+      .col-description-roomdetailreview{
+        max-width: 188px;
+        left: 12px;
+      }
+    }
+    .div-wrapimg {
+      position: relative;
+      height:110px;
+      width: 104px;
+      overflow: hidden;
+      border-radius: 5px;
+  }
+
+

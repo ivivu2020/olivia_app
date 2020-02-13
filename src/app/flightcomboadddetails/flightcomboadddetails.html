@@ -1,0 +1,307 @@
+<ion-header>
+  <ion-toolbar style="min-height: 0px;text-align: center">
+    <ion-row>
+      <ion-col style="text-align: center;height: 48px;">
+        <div style="align-self: center">
+          <div style="position: absolute;height: 48px;width: 48px;top: 8px;" (click)="goback()">
+            <img style="height: 48px; padding: 8px;margin-top: -7px;margin-left:-14px"
+              src="./assets/imgs/ios-arrow-round-back.svg">
+          </div>
+          <div style="padding-top: 6px;font-size: 20px;font-weight: bold;"><label>Điền thông
+              tin</label></div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <ion-row>
+        <ion-col style="padding:0; text-align: center">
+            <img style="height: 16px;" src="./assets/step/fc_step_2.svg">
+        </ion-col>
+    </ion-row>
+    <div style="margin-top: 10px">
+        <ion-label class="text">
+          Thông tin liên hệ
+        </ion-label>
+      </div>
+      <div style="margin-left: -5px">
+        <ion-row>
+          <!-- <ion-col size="6">
+            <ion-item style="--padding-start: 0px"> 
+              <ion-label position="stacked">Họ</ion-label>
+              <ion-input (ionChange)=textchangeho()  [(ngModel)]="ho" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item style="--padding-start: 0px">
+              <ion-label position="stacked">Tên</ion-label>
+              <ion-input  (ionChange)=textchangeten() [(ngModel)]="ten" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row> -->
+        <ion-col size="12">
+            <ion-item style="--padding-start: 0px"> 
+              <ion-label style="color: #828282" position="floating">Họ Tên</ion-label>
+              <ion-input (ionChange)=textchangehoten()  [(ngModel)]="hoten" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row> 
+        <ion-row>
+          <ion-col size="12">
+            <ion-item style="--padding-start: 0px">
+              <ion-label style="color: #828282" position="floating">Điện thoại</ion-label>
+              <ion-input [(ngModel)]="phone" maxlength=10  type="tel"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </div>
+        <div style="margin-top: 10px">
+            <ion-label class="text">
+              Thông tin hành khách
+            </ion-label>
+          </div>
+  <div *ngFor="let m of arradult;let i=index">
+    <div style="margin-top: 15px">
+      <ion-label style="font-size: 14px;font-weight: bold">
+        {{m.text}}
+      </ion-label>
+    </div>
+
+    <ion-radio-group  *ngIf="m.PassengerType==0">
+      <label class="text-title">Quý danh<span style="color: red">*</span></label>
+      <ion-row style="margin-left: -5px">
+        <ion-col size="6">
+           <ion-item style="margin-left: -10px" class="ion-item">
+            <ion-radio [checked]="m.Gender==1?'true':false" (ionSelect)="itemrdmale(i,0)" style="width: 12px;height: 12px" class="rd-departure radiocss">
+            </ion-radio>
+            <label style="margin-left: 5px" class="rd-text">Anh</label>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item style="margin-left: -10px" class="ion-item">
+            <ion-radio [checked]="m.Gender==2?'true':false" style="width: 12px;height: 12px" (ionSelect)="itemrdfemale(i,0)" class="rd-departure radiocss">
+            </ion-radio>
+            <label style="margin-left: 5px" class="rd-text">Chị</label>
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+    <ion-radio-group *ngIf="m.PassengerType!=0">
+        <label class="text-title">Quý danh<span style="color: red">*</span></label>
+        <ion-row style="margin-left: -5px">
+          <ion-col size="6">
+            <ion-item class="ion-item">
+              <ion-radio [checked]="m.Gender==1?'true':false" style="width: 12px;height: 12px"  (ionSelect)="itemrdmale(i,1)" class="rd-departure radiocss"></ion-radio>
+              <label style="margin-left: 5px" class="rd-text">Bé trai</label>
+            </ion-item>
+  
+          </ion-col>
+          <ion-col size="6">
+            <ion-item class="ion-item">
+              <ion-radio [checked]="m.Gender==2?'true':false" style="width: 12px;height: 12px"  (ionSelect)="itemrdfemale(i,1)" class="rd-departure radiocss">
+              </ion-radio>
+              <label style="margin-left: 5px" class="rd-text">Bé gái</label>
+            </ion-item>
+  
+          </ion-col>
+        </ion-row>
+      </ion-radio-group>
+    <ion-row style="margin-left: -5px">
+      <!-- <ion-col size="6">
+        <ion-item style="--padding-start: 0px">
+          <ion-label class="text-title" position="stacked">Họ<span style="color: red">*</span></ion-label>
+          <ion-input [(ngModel)]="m.LastName" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item style="--padding-start: 0px">
+          <ion-label class="text-title" position="stacked">Tên đệm & tên<span style="color: red">*</span></ion-label>
+          <ion-input [(ngModel)]="m.FirstName" type="text"></ion-input>
+        </ion-item>
+      </ion-col> -->
+      <ion-col size="12">
+          <ion-item style="--padding-start: 0px"> 
+            <ion-label style="color: #828282" position="floating">Họ Tên</ion-label>
+            <ion-input  [(ngModel)]="m.hoten" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+    </ion-row>
+    <ion-row *ngIf="m.PassengerType!=0" style="margin-left: -5px">
+      <ion-col size="12">
+        <ion-item style="--padding-start: 0px">
+          <ion-label class="text-title" position="stacked">Sinh ngày<span style="color: red">*</span></ion-label>
+          <ion-datetime cancelText="Thoát" doneText="Hoàn thành" min="2007" max="2019" displayFormat="DD-MM-YYYY" pickerFormat="DD MM YYYY"
+            [(ngModel)]="m.BirthDay"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </div>
+  <!-- trẻ em -->
+  <!-- <div *ngFor="let m of arrchild;let i=index">
+    <div style="margin-top: 15px">
+      <ion-label class="text">
+        {{m.text}}
+      </ion-label>
+    </div>
+
+    <ion-radio-group>
+      <label>Quý danh<span style="color: red">*</span></label>
+      <ion-row style="margin-left: -5px">
+        <ion-col size="6">
+          <ion-item class="ion-item">
+            <ion-radio style="width: 12px;height: 12px" (ionSelect)="itemrdmale(i,1)" class="rd-departure"></ion-radio>
+            <label style="margin-left: 5px" class="rd-text">Bé trai</label>
+          </ion-item>
+
+        </ion-col>
+        <ion-col size="6">
+          <ion-item class="ion-item">
+            <ion-radio style="width: 12px;height: 12px" (ionSelect)="itemrdfemale(i,1)" class="rd-departure">
+            </ion-radio>
+            <label style="margin-left: 5px" class="rd-text">Bé gái</label>
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+
+
+    <ion-row style="margin-left: -5px">
+      <ion-col size="6">
+        <ion-item style="--padding-start: 0px">
+          <ion-label class="text-title" position="stacked">Họ<span style="color: red">*</span></ion-label>
+          <ion-input [(ngModel)]="m.LastName" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item style="--padding-start: 0px">
+          <ion-label class="text-title" position="stacked">Tên đệm & tên<span style="color: red">*</span></ion-label>
+          <ion-input [(ngModel)]="m.FirstName" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin-left: -5px">
+      <ion-col size="12">
+        <ion-item style="--padding-start: 0px">
+          <ion-label class="text-title" position="stacked">Sinh ngày<span style="color: red">*</span></ion-label>
+          <ion-datetime min="2007" max="2019" displayFormat="DD-MM-YYYY" pickerFormat="DD MM YYYY"
+            [(ngModel)]="m.BirthDay"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </div> -->
+  <!-- Mua thêm hành lý -->
+  <!-- <div *ngIf="ischecklugage"  style="margin-top: 15px">
+    <ion-checkbox style="position: absolute;padding-right: 8px;width: 26px"  (click)="buyLuggage()"></ion-checkbox>
+    <ion-label style="color:#828282;font-size:14px;padding-left: 24px;">Mua thêm hành lý kí gửi</ion-label>
+  </div> -->
+  <ion-row *ngIf="ischecklugage"  style="margin-left: -5px">
+    <ion-col   size="1">
+        <ion-checkbox (click)="buyLuggage()" style="height: 85%;width: 100%;"  ></ion-checkbox>
+      </ion-col>
+      <ion-col size="11">
+          <ion-label style="color:#828282;font-size:14px">Mua thêm hành lý kí gửi</ion-label>
+        </ion-col>
+   </ion-row>
+  <div *ngIf="showLuggage" style="margin: 10px 0">
+    <ion-row>
+      <ion-label class="text">Hành lý ký gửi</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-label class="text-sub">Xách tay</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-label>Tối đa 7kg / 1 khách. 1 kiện hành lý kích thước phải nhỏ hơn : 158cm (56cm x 36cm x 23cm)</ion-label>
+    </ion-row>
+
+    <!-- Chiều đi -->
+    <div *ngFor="let item of arrlugage;let i=index" style="margin-top: 10px">
+      <ion-row>
+        <ion-label class="text-sub">{{item.text}}</ion-label>
+      </ion-row>
+      <ion-row style="margin-left: -8px"  *ngIf="airLineLuggageDepart.length>0">
+        <ion-col style="padding: 8px" size="3">
+          <ion-label>Chiều đi</ion-label>
+        </ion-col>
+
+
+        <ion-col size="1.5">
+          <img (click)="minusluggedepart(item.weight,i)" src="./assets/ic_facility/ic_minus.png">
+          <!-- <img *ngIf="ischeckluggedepart==false" (click)="minusluggedepart()" src="./assets/ic_facility/ic_minus_disable.png"> -->
+        </ion-col>
+
+        <ion-col style="padding: 8px" size="2">
+            <ion-label>{{item.weight}}</ion-label>
+        </ion-col>
+
+        <ion-col size="1.5">
+          <img (click)="addluggedepart(item.weight,i)" src="./assets/ic_facility/ic_add.png">
+
+        </ion-col>
+
+        <ion-col style="padding: 8px" size="4">
+          <ion-label>
+              + {{item.amountstr}} đ
+          </ion-label>
+        </ion-col>
+      </ion-row>
+
+    <!-- Chiều về -->
+    <ion-row *ngIf="airLineLuggageReturn.length>0"  style="margin-left: -8px">
+      <ion-col style="padding: 8px" size="3">
+        <ion-label>Chiều về</ion-label>
+      </ion-col>
+
+      <ion-col size="1.5">
+        <img (click)="minusluggereturn(item.weightreturn,i)" src="./assets/ic_facility/ic_minus.png">
+        <!-- <img *ngIf="ischeckluggedepart==false" (click)="minusluggedepart()" src="./assets/ic_facility/ic_minus_disable.png"> -->
+      </ion-col>
+
+      <ion-col style="padding: 8px" size="2">
+        <ion-label>{{item.weightreturn}}</ion-label>
+      </ion-col>
+
+      <ion-col size="1.5">
+        <img (click)="addluggereturn(item.weightreturn,i)" src="./assets/ic_facility/ic_add.png">
+
+      </ion-col>
+
+      <ion-col style="padding: 8px" size="4">
+        <ion-label>
+          + {{item.amountreturnstr}} đ
+        </ion-label>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>
+<div style="margin-top: -10px" *ngIf="PriceAvgPlusTAStr">
+    <ion-row>
+      <ion-col size="6"  style="padding: 0;">
+        <div>
+          <h2 class="text-name" style="font-size: 18px;" position="stacked">Tổng cộng</h2>
+          <p style="font-size: 10px;font-weight: 300;margin-top: -10px;color: #828282;margin-bottom: 0;">Giá đã bao gồm thuế & phí</p>
+        </div>
+      </ion-col>
+      <ion-col size="6" style="padding: 0;" *ngIf="PriceAvgPlusTAStr">
+        <p class="total-price" style="text-align: right;margin: 24px 0 0 0px;">
+          {{PriceAvgPlusTAStr}}đ
+          <!-- <sup style="top:0">
+            <img  src="./assets/ic_green/ic_info.svg">
+          </sup> -->
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="PriceAvgPlusTAStr">
+      <ion-col style="padding:5px 0">
+        <label style="font-size:14px;color:#828282;font-style: italic">*iVIVU không đảm bảo giá vé này cho đến khi bạn hoàn tất thanh toán và mã đặt chỗ vé máy bay được xác nhận!</label>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+<ion-footer>
+  <div style="background-color: #ffffff; text-align: center">
+    <button (click)="next()" ion-button round outline class="button button2">Xác nhận</button>
+  </div>
+</ion-footer>

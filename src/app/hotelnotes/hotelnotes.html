@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-row>
+        <ion-col style="text-align: center;height: 56px;">
+            <div style="align-self: center" >
+            <div style="position: absolute;height: 48px;width: 48px;align-self: center;" (click)="goback()">
+                <img style="height: 48px; padding: 8px;margin-top: 0px;margin-left:-8px" src="./assets/imgs/ios-arrow-round-back.svg" >
+              </div>
+            <div style="padding-top: 11px;font-size: 20px;font-weight: bold;"><label class="text-title">Thông tin cần ghi nhớ</label></div>
+            </div>
+        </ion-col>
+        </ion-row>
+    </ion-header>
+    
+    <ion-content >
+        <div class="hotel-notes-content">
+            <div *ngFor="let note of listNotes">
+                <div class="note-title" >{{note.title}}</div>
+                <div class="note-description" [innerHTML]="note.description"></div>
+            </div>
+        </div>
+    </ion-content>

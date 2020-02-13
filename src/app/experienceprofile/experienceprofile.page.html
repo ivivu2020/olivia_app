@@ -1,0 +1,101 @@
+<ion-header>
+    <ion-row>
+        <ion-col size="2" class="header-text header-icon" (click)="goback()">
+            <img style="height: 48px; padding: 8px;" src="./assets/imgs/ios-arrow-round-back.svg" >
+        </ion-col>
+        <ion-col size="8" class="header-text">
+            <ion-title class="text-title">
+                {{profilename}}
+            </ion-title>
+        </ion-col>
+      </ion-row>
+</ion-header>
+
+<ion-content class="cls-experienceprofile" *ngIf="slide">
+    <div class="profile-info">
+      <ion-row>
+        <ion-col class="no-padding" size="4">
+          <div class="profile-avatar">
+            <img class="img-profile-avatar" [src]="slide.imageUrl">
+          </div>
+        </ion-col>
+        <ion-col class="no-padding" size="8">
+          <div class="profile-info-text">
+            <div><ion-label>16 người theo dõi</ion-label></div>
+            <div><ion-label>Đang theo dõi 2 người</ion-label></div>
+            <div><ion-label>Recommend 16 địa điểm</ion-label></div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+      <!-- item recommend -->
+      <div class="cls-deal">
+        <img class="slide2 img" [src]="slide.imageUrl" >
+        <div class="float-promo">
+          <p class="float-promo-description">{{slide.description}} | {{slide.priceshow}} triệu/khách</p>
+        </div>
+  
+        <h2 class="hotel-name" >
+              {{slide.name}}
+        </h2>
+  
+        <div>
+          <ion-row>
+            <ion-col size="0.9" class="no-padding"><img class="item-image img-lc" src="./assets/iocnsearch/ic_location.svg"></ion-col>
+            <ion-col size="11.1" class="no-padding"><ion-label class="text-item-recommend">{{slide.address}}</ion-label><ion-label class="text-map">xem bản đồ </ion-label></ion-col>
+          </ion-row>
+          
+        </div>
+        
+        <div>
+            <ion-row>
+                <ion-col size="0.9" class="no-padding"><img class="item-image img-money" src="./assets/imgs/ic_money_b.svg"></ion-col>
+                <ion-col size="11.1" class="no-padding"><ion-label class="text-item-recommend">50.000 đồng – 60.000 đồng</ion-label></ion-col>
+              </ion-row>
+        </div>
+  
+        <div class="p-top-6">
+            <ion-row>
+              <ion-col class="no-padding">
+                <ion-label class="text-item-recommend">Quán cà phê Đà Lạt này sở hữu một khu vườn nhỏ sẵn sàng chào đón những ai đang cần nơi “trú ẩn”                </ion-label>
+              </ion-col>
+            </ion-row>
+        </div>
+        <div class="p-top-8">
+            <ion-row>
+              <ion-col class="no-padding item-v-align" size="6">
+                <ion-label class="text-qrcode">Tải QRCode</ion-label>
+              </ion-col>
+              <ion-col class="no-padding f-right" size="2">
+                  <img class="item-image-share img-money" src="./assets/imgs/ic_money_b.svg">
+              </ion-col>
+              <ion-col class="no-padding f-right" size="2">
+                  <img class="item-image-share img-money" src="./assets/imgs/ic_share_black.svg">
+              </ion-col>
+              <ion-col class="no-padding f-right" size="2">
+                  <img *ngIf="!like" class="item-image-heart img-money" src="./assets/imgs/heart-empty-black.svg">
+                  <img *ngIf="like" class="item-image-heart img-money" src="./assets/imgs/heart-empty-black.svg">
+              </ion-col>
+            </ion-row>
+        </div>
+        <div class="cls-row-item p-top-16">
+            <ion-row>
+              <ion-col class="no-padding item-v-align" size="4">
+                <ion-label class="">40 lượt thích</ion-label>
+              </ion-col>
+              <ion-col class="no-padding item-v-align f-right" size="5">
+                  <ion-label class="label-recommend">Recommend bởi</ion-label>
+              </ion-col>
+              <ion-col class="no-padding f-right" size="3">
+                  <img class="item-image-avatar avatar1" [src]="slide.imageUrl">
+                  <img class="item-image-avatar avatar2" [src]="slide.imageUrl">
+                  <img class="item-image-avatar avatar3" [src]="slide.imageUrl">
+                  <div class="avatar-mask">
+                    <ion-label class="text-mask">+22</ion-label>
+                  </div>
+              </ion-col>
+            </ion-row>
+        </div>
+      </div>
+  </ion-content>
+  

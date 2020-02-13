@@ -1,0 +1,147 @@
+
+<ion-header>
+    <ion-row>
+      <ion-col size="1.2">
+        <div style="position: absolute;height: 48px;width: 48px;top: 8px;margin-left: 10px" (click)="goback()">
+          <img style="height: 48px; padding: 8px;margin-top: -3px;margin-left:-14px"
+            src="./assets/imgs/ios-arrow-round-back.svg">
+        </div>
+      </ion-col>
+      <ion-col size="8" style="text-align: center;height: 56px;" >
+
+        <div style="margin-top: 0px;font-size: 20px;font-weight: bold;" *ngIf="searchblog">
+          <form action=".">
+            <ion-searchbar #inputSearchBlog style="text-align: left;
+                background: #fff;
+                -webkit-padding-start: 0;
+                padding-inline-start: 0;
+                --background: var(--ion-overlay-background-color,#fff);
+                padding-top: 12px;
+                font-size: 16px;width: 100%;
+                padding-right: 0;
+                height: 48px;"
+                autocomplete="on" autocorrect="true"
+                debounce="500"
+                class="input-blog" placeholder="Tìm bài viết" searchIcon="false" (ionClear)="cancelInput()" (ionChange)="clickSearch($event)" 
+                ></ion-searchbar>
+              </form>
+        </div>
+        <div *ngIf="!searchblog" class="div-img-search img-search div-right" (click)="clickHeaderSearch()">
+          <img class="img-header-search" src="./assets/imgs/ic_search.svg" >
+        </div>
+      </ion-col>
+        <div *ngIf="searchblog" class="div-img-header img-close div-right" (click)="clickCancel()">
+          <img class="img-header-close" src="./assets/ic_close.svg" >
+        </div>
+        
+        <div ><img class="img-share-top"(click)="share()" src="./assets/imgs/ic_share_black.svg"></div>
+        <div > 
+          <img *ngIf="!Liked" class="img-heart-top" (click)="likeItem()" src="./assets/imgs/heart-empty-black.svg">
+          <img *ngIf="Liked" class="img-heart-top" (click)="unlikeItem()" src="./assets/imgs/heart-red.svg">
+        </div>
+    </ion-row>
+</ion-header>
+<ion-content class="blog-content">
+  <div *ngIf="loaddatadone else loadskeleton" class="p-16">
+    <div *ngIf="searchblog">
+      <div *ngFor="let item of items; let i = index">
+          <ion-row class='cls-row-width' (click)="itemSearchBlogClick(item,i)" *ngIf="item.show">
+            <ion-col size="0.8" class="no-padding">
+                <img class="img-search-blog" src="./assets/imgs/frame.svg" *ngIf="item.type == 2">
+                <img class="img-search-blog" src="./assets/imgs/newspaper.svg" *ngIf="item.type == 1">
+            </ion-col>
+            <ion-col text-left class="no-padding p-left-6">
+              <ion-label *ngIf="item.title" class="label-item-blog">
+               {{item.title}}
+              </ion-label>
+            </ion-col>
+          </ion-row>
+        </div>
+    </div>
+
+    <div *ngIf="!searchblog">
+      
+    <div>
+      <h2 class="text-title">{{title}}</h2>
+    </div>
+    <div text-wrap>
+      <div class="divcss" [innerHTML]="content"> </div>
+    <div style="background-color: #f2f2f2;height: 12px;width: 110%;margin-left: -16px;">
+    </div>
+
+
+    <div style="margin-top: 24px" class="see-more-blog" *ngIf="postLatest && postLatest.length >0">
+      <div>
+        <ion-label class="text-title">
+          Xem thêm bài viết:
+        </ion-label>
+      </div>
+      <div class="div-itemlist">
+          <div *ngFor="let msg of postLatest; let i = index">
+            <div [ngClass]="i == postLatest.length -1 ? 'row-item-hotellist' : 'row-item-hotellist border-bottom'">
+              <div (click)="moreBlogLinkClick(msg.id)" class="col-img-hotellist">
+                <img class="img-radius" src={{msg.Avatar}}>
+              </div>
+              <div class="col-description-hotellist">
+                <div (click)="moreBlogLinkClick(msg.id)" class="div-tile-blog">
+                  <ion-label class="title-blog">{{msg.Title}}
+                  </ion-label>
+                  </div>
+    
+                <div >
+                    <div class="text-date">
+                        <ion-label (click)="moreBlogLinkClick(msg.id)" class="label-date">{{msg.Date}}
+                          </ion-label>
+                    </div>
+                        <div>
+                          <div class="div-img-share" (click)="shareitem(msg.Url)">
+                            <img class="img-share" src="./assets/imgs/ic_share_black.svg">
+                          </div>
+                        <div class="div-img-like">
+                          <img *ngIf="!msg.Like"  class="img-like" (click)="likeItemsame(msg.id)" src="./assets/imgs/heart-empty-black.svg">
+                          <img *ngIf="msg.Like" class="img-like" (click)="unlikeItemsame(msg.id)" src="./assets/imgs/heart-red.svg">
+                        </div>
+                        </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+  <ng-template #loadskeleton>
+    <div style="margin-top:30px">
+      <ion-list lines="none" *ngFor="let item of blogtripssk" >
+        <div >
+          <ion-item style="--inner-padding-end: 16px">
+            <!-- <img (click)="itemblogclick(item)" class="img-blog"
+              src={{item.avatar}}> -->
+              <ion-skeleton-text animated style="width: 100%;margin: 0;border-radius: 5px;
+              width: 100% !important;
+              height: 180px !important;
+              object-fit: cover" ></ion-skeleton-text>
+          </ion-item>
+            <!-- <p style="padding: 8px 16px 0px 16px;margin: 0;" (click)="itemblogclick(item)">
+              {{item.title}}
+            </p> -->
+            <ion-row>
+              <ion-col style="padding:0">
+                  <ion-skeleton-text animated style="width: 75%;margin: 16px 16px 0 16px;height: 16px;"></ion-skeleton-text>
+              </ion-col>
+              </ion-row>
+            
+          <ion-row>
+              <ion-col style="padding:0">
+                <ion-skeleton-text animated style="width: 91%;margin: 0;margin: 16px 16px 0 16px;height: 16px"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+  </ng-template>
+  
+</ion-content>

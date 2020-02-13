@@ -1,0 +1,27 @@
+<!--
+  Generated template for the PolicyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-row style="padding-top:11px">
+    <ion-col style="text-align: center">
+      <div style="align-self: center" >
+        <div style="position: absolute;height: 48px;width: 48px;align-self: center;" (click)="goback()">
+          <img class="header-img-twoline" src="./assets/imgs/ios-arrow-round-back.svg" >
+        </div>
+        
+        <div><label class="text-title">Thông tin</label></div>
+        <div><label style="font-size: 11px;color: #828282">{{Name}}</label></div>
+      </div>
+    </ion-col>
+  </ion-row>
+  </ion-header>
+  <ion-content>
+       <div style="padding: 16px">
+          <label  [innerHTML]="FullDescription" text-wrap>
+            </label>
+       </div>
+
+  </ion-content>

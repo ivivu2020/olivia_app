@@ -1,0 +1,72 @@
+
+    .text-name
+    {
+      font-weight: bold;
+      font-size: 18px;
+      .text-green
+      {
+        color: #26bed6
+      }
+    }
+    .text-date
+    {
+        margin-top: 0px;
+        font-weight: bold;
+        font-size: 14px
+    }
+    .image-card{
+      display: initial !important;
+    }
+    .total-price{
+      color: #26bed6;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .button2
+    {
+        border-color: #F79221;
+        background-color: #F79221;
+        color: #ffffff;
+        width: 90%;
+        height: 48px;
+
+    }
+    .item-md ion-thumbnail ion-img, .item-md ion-thumbnail img {
+      width: 104px;
+      height: 104px;
+    }
+    .item.item-md .checkbox-md {
+      position: static;
+      display: block;
+      margin: 9px 9px 9px 4px;
+    }
+    .text-room-price-ota{
+      color:#828282;
+      font-size: 14px;
+      text-align: right;
+      text-decoration: line-through;
+      margin: 20px;
+      margin-top: -20px;
+  }
+  .toolbar-title-md {
+    text-align: center;
+    margin-right: 70px;
+  }  
+  .div-wrapimg {
+    position: relative;
+    height:110px;
+    width: 104px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+hr
+{
+  background-color: #ccc;
+}
+
+@media (min-width:287px) and (max-width: 359px) {
+  .col-description-roompayment{
+    max-width: 188px;
+    left: 12px;
+  }
+}

@@ -1,0 +1,31 @@
+<ion-tabs>
+
+  <ion-tab-bar class="tabbar" slot="bottom">
+    <ion-tab-button class="tab-button" tab="tab1">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Trang chủ</ion-label>
+    </ion-tab-button>
+    <div class="div-split"></div>
+    <ion-tab-button class="tab-button" tab="tab2">
+      <ion-icon name="heart"></ion-icon>
+      <ion-label>Yêu thích</ion-label>
+    </ion-tab-button>
+    <div class="div-split"></div>
+    <ion-tab-button class="tab-button" tab="tab3">
+      <ion-icon name="paper-plane"></ion-icon>
+      <ion-label>Chuyến đi</ion-label>
+    </ion-tab-button>
+    <div class="div-split"></div>
+    <ion-tab-button class="tab-button" tab="tab4">
+      <ion-icon name="text"></ion-icon>
+      <ion-label>Hộp thư</ion-label>
+      <ion-badge *ngIf="countmessage" color="danger">{{countmessage}}</ion-badge>
+    </ion-tab-button>
+    <div class="div-split"></div>
+    <ion-tab-button class="tab-button" tab="tab5">
+      <ion-icon name="contact"></ion-icon>
+      <ion-label>Tài khoản</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>

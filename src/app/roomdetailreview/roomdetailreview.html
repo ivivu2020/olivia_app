@@ -1,0 +1,254 @@
+<!--
+  Generated template for the RoomdetailreviewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-row style="padding-top:11px">
+    <ion-col style="text-align: center;height: 48px;">
+      <div style="align-self: center">
+        <div style="position: absolute;height: 48px;width: 48px;" (click)="goback()">
+          <img style="height: 48px; padding: 8px;margin-top:-4px;margin-left:-8px"
+            src="./assets/imgs/ios-arrow-round-back.svg">
+        </div>
+
+        <div style="padding-top: 6px;font-size: 20px;font-weight: bold;"><label class="text-title">Kiểm tra</label>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-header>
+<ion-content padding>
+  <div *ngIf="ischeckpayment" style="text-align: center">
+      <img  src="./assets/step/step_1.svg">
+  </div>
+  <div *ngIf="!ischeckpayment" style="text-align: center">
+    <img  src="./assets/step/fc_step_1.svg">
+    </div>
+    <div *ngIf="titlecombo" class="div-title">
+      <ion-label class="combo-title">{{titlecombo}}</ion-label>
+    </div>
+  <ion-row style="padding:14px 0">
+    <ion-col size="4" style="padding: 5px 0px;">
+      <div class="div-wrapimg">
+        <img style="border-radius: 5px;height: 100%" src={{Avatar}}>
+      </div>
+    </ion-col>
+    <ion-col size="8" style="padding:3px" class="col-description-roomdetailreview">
+      <div style="margin-left: 3px">
+        <h2 class="text-name" style="margin-top: 0" text-wrap>{{Name}}
+        </h2>
+        <p style="font-size: 14px;color: #4f4f4f" text-wrap>
+          <ion-icon name="pin"></ion-icon> {{Address}}
+        </p>
+      </div>
+    </ion-col>
+  </ion-row>
+  <hr>
+  <div>
+    <ion-grid style="padding:0">
+      <ion-row style="font-size:12px">
+        <ion-col size="5" style="padding:0">
+          <ion-label style="font-weight: 300;color: #4f4f4f" stacked>Nhận phòng</ion-label>
+        </ion-col>
+        <ion-col size="5" style="padding:0">
+          <ion-label style="font-weight: 300;color: #4f4f4f" stacked>Trả phòng</ion-label>
+        </ion-col>
+        <ion-col size="2" style="padding:0">
+          <ion-label style="font-weight: 300;padding-left: 4px;color: #4f4f4f" stacked>Số đêm</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4.5" style="padding:0">
+          <ion-label style="padding: 0px;font-weight: bold;font-size: 14px" stacked>{{cin}}</ion-label>
+        </ion-col>
+        <ion-col size="0.5" style="padding: 0;">
+          <ion-label style="margin-top: 32px;color: #666666;text-align: center">|</ion-label>
+        </ion-col>
+        <ion-col size="4.5" style="padding:0">
+          <ion-label style="padding: 0px;font-weight: bold;font-size: 14px" stacked>{{cout}}
+          </ion-label>
+        </ion-col>
+        <ion-col size="0.5" style="padding: 0;margin-left: -3px;">
+          <ion-label style="margin-top: 32px;color: #666666;text-align: center">|</ion-label>
+        </ion-col>
+        <ion-col size="2" style="padding:0">
+          <ion-label style="padding: 0px;font-weight: bold;font-size: 14px;margin-left: 10px" stacked>{{dur}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <hr>
+  <div>
+    <label class="text-name">
+      {{nameroom}}
+    </label>
+    <p style="color: #666;font-size: 14px" text-wrap>
+      <img class="image-card" src="./assets/ic_facility/ic_people.svg"> {{roomnumber}} phòng | {{adults}} người lớn |
+      {{children}} trẻ em {{textage}}
+      <p>
+        <p style="color: #666;font-size: 14px">
+          <img class="image-card" *ngIf="breakfast" src="./assets/ic_facility/ic_food_b.svg"> {{breakfast}}
+          <p>
+  </div>
+  <hr class="cls-hr">
+  <div *ngIf="point>0" class="div-voucher">
+    <div class="div-flex">
+      <div class="div-first">
+        <div *ngIf="!ischeckpoint" class="div-checkpoint">
+            <ion-checkbox class="check-point" mode="md" (ionChange)="edit()" [disabled]="ischeckbtnpromo==true?'true':false" checked="false" [(ngModel)]="ischeck" color="secondary"></ion-checkbox>
+            <div class="div-point cls-ml8">
+              <div  class="text-point">Dùng {{pointshow}} điểm</div>
+              <div class="num-point">
+              (-{{price}}đ)
+              </div>
+            </div>
+        </div>
+        <div *ngIf="ischeckpoint" class="div-checkpoint">
+            <ion-checkbox class="check-point" mode="md" (ionChange)="edit()" checked="false" [disabled]="ischeckbtnpromo==true?'true':false" [(ngModel)]="ischeck" color="secondary"></ion-checkbox>
+            <div class="div-point cls-ml8">
+              <div  class="text-point">Dùng {{pointshow}} điểm</div>
+              <div class="num-point">
+              (-{{PriceAvgPlusTAStr}}đ)
+              </div>
+            </div>
+        </div>
+      </div>
+      <div  class="div-col-split">
+      </div>
+       
+      <div *ngIf="!ischeck" class="div-promotion">
+      <ion-label (click)="showdiscount()" class="text-point">{{textpromotion}}</ion-label>
+      </div>
+      <div *ngIf="ischeck" class="div-promotion">
+        <ion-label class="text-promotion">Nhập mã giảm giá</ion-label>
+        </div>
+    </div>
+    <hr class="cls-hr">
+      <div *ngIf="ischeck||ischeckbtnpromo" >
+        <ion-row>
+          <ion-col size="5" style="padding: 0;">
+            <div>
+              <h2 class="text-name" style="font-size: 18px;" position="stacked">Tổng cộng</h2>
+              <p style="font-size: 10px;font-weight: 300;margin-top: -10px">Giá đã bao gồm thuế & phí</p>
+            </div>
+          </ion-col>
+          <ion-col size="7" style="padding: 0;">
+            <p  class="total-price" style="text-align: right">
+              {{Pricepointshow}}đ
+              <sup>
+                <img (click)="roompaymentbreakdow()" src="./assets/ic_green/ic_info.svg">
+              </sup>
+            </p>
+            <!-- <p *ngIf="!ischeck" class="total-price" style="text-align: right">
+              {{PriceAvgPlusTAStr}}đ
+              <sup>
+                <img (click)="roompaymentbreakdow()" src="./assets/ic_green/ic_info.svg">
+              </sup>
+            </p> -->
+            <p *ngIf="Pricepointshow!=0" class="text-room-price-ota">
+              {{PriceAvgPlusTAStr}}đ
+            </p>
+          </ion-col>
+        </ion-row>
+      </div>
+      <div *ngIf="!ischeck&&!ischeckbtnpromo" >
+          <ion-row>
+            <ion-col size="5" style="padding: 0;">
+              <div>
+                <h2 class="text-name" style="font-size: 18px;" position="stacked">Tổng cộng</h2>
+                <p style="font-size: 10px;font-weight: 300;margin-top: -10px">Giá đã bao gồm thuế & phí</p>
+              </div>
+            </ion-col>
+            <ion-col size="7" style="padding: 0;">
+              <p  class="total-price" style="text-align: right">
+                  {{PriceAvgPlusTAStr}}đ
+                  <sup>
+                    <img (click)="roompaymentbreakdow()" src="./assets/ic_green/ic_info.svg">
+                  </sup>
+                </p>
+            </ion-col>
+          </ion-row>
+        </div>
+    </div>
+    <div *ngIf="point<=0||!point">
+    <div style="margin-top: 10px">
+            <label class="text-name">
+                Mã giảm giá
+              </label>
+              <ion-row style="margin-left: -5px">
+                  <ion-col size="9">
+                    <ion-item style="--padding-start: 0px">
+                      <ion-label style="color: #828282" position="floating">Nhập mã giảm giá</ion-label>
+                      <ion-input (ionInput)="textchange()" [(ngModel)]="promocode" type="text" *ngIf="ischecktext==3" class="none"  ></ion-input>
+                      <ion-input (ionInput)="textchange()" [(ngModel)]="promocode" type="text" *ngIf="ischecktext==1||ischecktext==2" class="error"  ></ion-input>
+                      <ion-input (ionInput)="textchange()" [(ngModel)]="promocode" type="text" *ngIf="ischecktext==0" class="click" ></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="3">
+                      <button style="margin-top: 35px" *ngIf="!ischeckbtnpromo" (click)="promofunc()" ion-button round outline class="button btnnone">Áp dụng</button>
+                      <button style="margin-top: 35px" *ngIf="ischeckbtnpromo"  ion-button round outline class="button btnnonesuccess"><span>
+                          <ion-icon name="checkmark"></ion-icon>
+                      </span></button>
+                  </ion-col>
+              </ion-row>
+              <ion-row> 
+                  <ion-label *ngIf="ischeckerror==1" style="color: rgb(229, 40, 34);font-size: 12px">{{msg}}</ion-label>
+                  <ion-label *ngIf="ischeckerror==0" style="color:#828282;font-size: 12px">{{msg}}</ion-label>
+              </ion-row>
+      </div>
+      <div *ngIf="!ischeckbtnpromo">
+          <ion-row>
+              <ion-col size="5" style="padding: 0;">
+                <div>
+                  <h2 class="text-name" style="font-size: 18px;" position="stacked">Tổng cộng</h2>
+                  <p style="font-size: 10px;font-weight: 300;margin-top: -10px">Giá đã bao gồm thuế & phí</p>
+                </div>
+              </ion-col>
+              <ion-col size="7" style="padding: 0;">
+                <p class="total-price" style="text-align: right">
+                  {{PriceAvgPlusTAStr}}đ
+                  <sup>
+                    <img (click)="roompaymentbreakdow()" src="./assets/ic_green/ic_info.svg">
+                  </sup>
+                </p>
+              </ion-col>
+            </ion-row>
+      </div>
+     
+      <div *ngIf="ischeckbtnpromo" >
+          <ion-row>
+            <ion-col size="5" style="padding: 0;">
+              <div>
+                <h2 class="text-name" style="font-size: 18px;" position="stacked">Tổng cộng</h2>
+                <p style="font-size: 10px;font-weight: 300;margin-top: -10px">Giá đã bao gồm thuế & phí</p>
+              </div>
+            </ion-col>
+            <ion-col size="7" style="padding: 0;">
+              <p  class="total-price" style="text-align: right">
+                {{Pricepointshow}}đ
+                <sup>
+                  <img (click)="roompaymentbreakdow()" src="./assets/ic_green/ic_info.svg">
+                </sup>
+              </p>
+              <!-- <p *ngIf="!ischeck" class="total-price" style="text-align: right">
+                {{PriceAvgPlusTAStr}}đ
+                <sup>
+                  <img (click)="roompaymentbreakdow()" src="./assets/ic_green/ic_info.svg">
+                </sup>
+              </p> -->
+              <p *ngIf="Pricepointshow!=0" class="text-room-price-ota">
+                {{PriceAvgPlusTAStr}}đ
+              </p>
+            </ion-col>
+          </ion-row>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+  <div style="background-color: #ffffff; text-align: center">
+    <button (click)="next()" ion-button round outline class="button button2 button-footer">Xác nhận</button>
+  </div>
+</ion-footer>

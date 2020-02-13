@@ -1,0 +1,56 @@
+    ion-item.item-ios {
+        padding-left: 0;
+      }
+      .passwordIcon{
+        font-size:2rem !important;
+        position: relative !important;
+        top: 15px !important;
+        margin: 0 auto !important;
+     }
+     .center {
+      padding: 57px 0 0 0;
+      text-align: center;
+      height: 100%;
+      background-image: url('../../assets/backgroundnew.png')
+      }
+      ion-item{
+          --background: initial;
+          --border-color: #fff;
+      }
+      .text-button{
+      text-align:center;
+      width: 50%;
+      font-size: 16px;
+      color: #ffffff
+    }
+    .button-outline {
+      --border-color:#ffffff;
+      --border-width: 1px;
+      --border-style: solid;
+    }
+    .div-go-back{
+      position: absolute;
+      top: 16px;
+      color: #ffffff;
+      width: 48px;
+      height: 48px;
+    }
+    .text-color
+    {
+      color:white
+    }
+    .passwordIcon[_ngcontent-c0] {
+      font-size: 2rem !important;
+      position: relative !important;
+      top: 10px !important;
+      margin: 0 auto !important;
+  }
+  .ion-item
+  {
+    --padding-start: 0px;
+    --inner-border-width: 0 0 0px 0;
+    width: 108%;
+    margin-top: 5px;
+    // margin-left: 10px;
+  }
+

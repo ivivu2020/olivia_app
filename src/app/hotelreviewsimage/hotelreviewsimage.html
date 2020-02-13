@@ -1,0 +1,40 @@
+<ion-content>
+    <div style="margin-top: env(safe-area-inset-top)">
+        <ion-row>
+          <ion-col style="text-align: center;height: 48px;">
+            <div style="align-self: center">
+              <div style="position: absolute;height: 48px;width: 48px;align-self: center;" (click)="goback()">
+                <img style="height: auto; padding: 14px;margin-left:-14px" src="./assets/imgs/ic_arrow_w.svg">
+              </div>
+            </div>
+          </ion-col>
+          <ion-col size="11">
+            <div style="text-align: left">
+              <ion-label style="font-size:12px;color: whitesmoke">
+                {{cusnamereview}}
+              </ion-label>
+            </div>
+            <div style="text-align: left">
+              <ion-label style="font-size:12px;color: whitesmoke">
+                {{datereview}}
+              </ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
+          
+  <div class="center">
+    <ion-slides (ionSlideDidChange)="ionSlideDidChange()" #mySlider>
+      <ion-slide *ngFor="let slide of arrimgreview">
+        <img style="height: 350px;width: 100%;object-fit: cover" [src]="slide.ImageUrl" />
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div *ngIf="ischeckslide" class="slide" style="text-align: center">
+    <img  (click)="backslide()"  src="./assets/imgs/back.svg">
+      <ion-label style="color: whitesmoke;padding: 40px;font-size: 22px">
+        {{countslide}}/{{lengthslide}}
+      </ion-label> 
+    <img  (click)="nextslide()" src="./assets/imgs/next.svg">
+  </div>
+</ion-content>

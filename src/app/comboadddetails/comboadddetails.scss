@@ -1,0 +1,50 @@
+    .text{
+        font-size: 18px;
+        font-weight: bold
+    }
+    .button2
+    {
+        background: #ff9500;
+        color: #ffffff;
+        border-color: #ff9500;
+        width: 90%;
+    } 
+    .button4
+    {
+        background: #ff9500;
+        color: #ffffff;
+        border-color: #ff9500;
+        width: 30%;
+        font-size: 12px;
+    }
+ 
+    .list-departure{
+        margin: 0;
+        display: inline-flex;
+    }
+
+    .rd-departure .radio-icon{
+        width: 12px;
+        height: 12px;
+    }
+   
+    .radio-md .radio-inner{
+        left: 1px;
+        top: 1px;
+        width: 6px;
+        height: 6px;
+    }
+    .radio-md .radio-checked {
+        border-color: #26bed6;
+    }
+    .toolbar-title-md {
+        text-align: center;
+        margin-right: 70px;
+      } 
+      .cls-label
+      {
+          color: #828282;
+          font-size: 12px
+      } 
+      
+

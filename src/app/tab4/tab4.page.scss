@@ -1,0 +1,77 @@
+.header-title{
+  padding: 12px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+    .toolbar-title-md {
+        text-align: center;
+        margin-right: 70px;
+      }  
+      .text-trip-empty{
+        text-align: center;
+        color: #bdbdbd;
+    }
+    .img-inbox-empty{
+      padding-top: 20%;
+    }
+
+  .cls-icon{
+    background-color: #003c71;
+    border-radius: 20px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+  }
+  .cls-row-content{
+    padding: 0px 16px 16px 16px;
+  }
+  .inbox-content-empty{
+    padding: 16px;
+  }
+.cls-border-bottom{
+  padding: 12px 0px;
+  margin: 0 16px;
+  border-bottom: solid 1px rgba(201, 201, 201, 0.5);
+}
+.inbox-title{
+  font-size: 14px;
+  font-weight: bold;
+  white-space: normal;
+}
+
+.inbox-message{
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.4px;
+}
+
+.inbox-date{
+  font-size: 12px;
+  letter-spacing: -0.34px;
+  color: #828282;
+}
+
+.item-unread{
+  background-color: rgba(0, 60, 113, 0.1);
+}
+
+.inbox-content:first-child{
+  padding-top: 4px;
+}
+.readed-text{
+  white-space: normal;
+}
+
+ng-deep{
+  .hidden-text{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 310px;
+  }
+
+  .readed-text{
+    white-space: normal;
+  }
+}
