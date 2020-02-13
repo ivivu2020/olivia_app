@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Validators, FormBuilder, FormControl,FormGroup, FormsModule,ReactiveFormsModule  } from '@angular/forms';
 
+
 import { Platform,IonContent } from '@ionic/angular';
 import { Component, NgZone, Input, ViewChild } from '@angular/core';
 import { NavController, NavParams, ModalController,ToastController,LoadingController } from '@ionic/angular';
