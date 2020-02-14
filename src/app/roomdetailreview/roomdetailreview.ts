@@ -504,7 +504,7 @@ export class RoomdetailreviewPage implements OnInit {
   }
   async showdiscount(){
     if (!this.ischeck) {
-      $('.div-point').removeClass('div-disabled');
+    $('.div-point').removeClass('div-disabled');
     this.valueGlobal.PriceAvgPlusTAStr=this.PriceAvgPlusTAStr;
     this.textpromotion="Nhập mã giảm giá";
     this.promocode="";
