@@ -468,6 +468,20 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "inappreview"
       ]
+    },
+    {
+      "id": "cordova-plugin-ionic.common",
+      "file": "plugins/cordova-plugin-ionic/dist/common.js",
+      "pluginId": "cordova-plugin-ionic",
+      "clobbers": [
+        "IonicCordova"
+      ]
+    },
+    {
+      "id": "cordova-plugin-ionic.guards",
+      "file": "plugins/cordova-plugin-ionic/dist/guards.js",
+      "pluginId": "cordova-plugin-ionic",
+      "runs": true
     }
   ];
   module.exports.metadata = {
@@ -503,6 +517,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-open-native-settings": "1.5.2",
     "cordova-plugin-market": "1.2.0",
     "com.telerik.plugins.nativepagetransitions": "0.6.5",
-    "com.omarben.inappreview": "0.0.5"
+    "com.omarben.inappreview": "0.0.5",
+    "cordova-plugin-ionic": "5.4.6"
   };
 });
