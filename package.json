@@ -117,7 +117,7 @@
     "ionic-angular": "^3.9.4",
     "ionic-tooltips": "^3.1.0",
     "ionicons": "^4.5.5",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jwt-decode": "^2.2.0",
     "leaflet": "^1.5.1",
     "moment": "^2.24.0",
