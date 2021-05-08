@@ -121,7 +121,7 @@
     "jwt-decode": "^2.2.0",
     "leaflet": "^1.5.1",
     "moment": "^2.24.0",
-    "ng-packagr": "^5.0.1",
+    "ng-packagr": "^10.1.1",
     "requestretry": "^4.0.0",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.4.0",
