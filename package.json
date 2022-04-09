@@ -120,7 +120,7 @@
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
     "leaflet": "^1.5.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ng-packagr": "^5.0.1",
     "requestretry": "^4.0.0",
     "rxjs": "~6.3.3",
